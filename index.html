@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Pour chaque prestation de la MGPTT : pièces à fournir, taux de remboursement, durée de validité et centre payeur où déposer le dossier. Bulletins d’adhésion à télécharger.">
 <meta name="theme-color" content="#0b2d7a">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="Prestations">
 <link rel="icon" type="image/png" href="data:image/png;base64,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">
 <style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Dossiers des prestations MGPTT</title>
@@ -177,7 +180,8 @@ main.wrap{padding-block:18px 8px}
 }
 
 /* ---------- Signature ---------- */
-.sig{margin:22px 0 0;padding-top:14px;border-top:1px solid var(--line);font:600 .9rem/1.5 var(--font-display);color:var(--brand)}
+.sig{margin:20px 0 0;font:400 .72rem/1.5 var(--font-body);letter-spacing:.01em;color:var(--muted);opacity:.8}
+:root[lang="ar"] .sig{font-size:.8rem}
 
 /* ---------- Bulletins d’adhésion ---------- */
 .links{display:flex;flex-wrap:wrap;gap:0 22px}
@@ -188,13 +192,62 @@ main.wrap{padding-block:18px 8px}
 .form-card h3{margin:0;font:700 1.05rem/1.3 var(--font-display)}
 .form-card p{margin:0 0 8px;font-size:.9rem;color:var(--muted)}
 .fmeta span,.fmeta bdi{white-space:nowrap}
+.form-card .fp-t{margin:6px 0 0;font:700 .72rem var(--font-display);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+:root[lang="ar"] .form-card .fp-t{letter-spacing:0;text-transform:none;font-size:.88rem}
+.fpieces{list-style:none;margin:0 0 6px;padding:0;display:grid;gap:6px}
+.fpieces li{position:relative;padding-inline-start:22px;font-weight:600;font-size:.95rem;line-height:1.4;overflow-wrap:anywhere}
+.fpieces li::before{content:"";position:absolute;inset-inline-start:2px;top:.5em;width:8px;height:8px;border-radius:2px;background:var(--accent)}
 .dl{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin-top:auto;min-height:48px;padding:10px 18px;border-radius:12px;background:var(--navy);color:var(--on-navy);font:700 .95rem var(--font-display);text-decoration:none;text-align:center}
 .dl:hover{filter:brightness(1.12)}
 .form-msg{margin:12px 0 0;font-size:.92rem;font-weight:600;color:var(--ink)}
 .form-msg:empty{display:none}
 @media (min-width:640px){.forms{padding:26px 30px}}
 
+/* ---------- Installation (PWA) ---------- */
+.install{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;max-width:560px;margin-top:16px;padding:12px 16px;background:var(--surface-2);border:1px solid var(--line);border-radius:14px}
+.install[hidden]{display:none}
+.install .inst-t{margin:0;font-weight:700;color:var(--ink)}
+.install .inst-h{flex-basis:100%;margin:0;font-size:.92rem;color:var(--muted)}
+.btn-inst{min-height:40px;padding:0 20px;border:0;border-radius:999px;background:var(--navy);color:var(--on-navy);font:700 .95rem var(--font-display);cursor:pointer}
+.btn-inst:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+
+/* ---------- Choix du type de prestations + prestations collectives ---------- */
+.modes{margin:0 0 16px;max-width:520px}
+body[data-mode="col"] .m-ind{display:none!important}
+body:not([data-mode="col"]) .m-col{display:none!important}
+.collectives{margin-top:20px;padding:20px;background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}
+.collectives .chips{margin:0 0 6px}
+.col-h{display:flex;align-items:center;gap:8px;margin:22px 0 10px;font:800 1.02rem/1.25 var(--font-display);color:var(--brand)}
+.col-h span{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;padding:0 7px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);font:700 .78rem var(--font-display);color:var(--muted)}
+.col-note{margin:-4px 0 10px;max-width:62ch;font-size:.92rem;color:var(--muted)}
+.col-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:10px}
+.col-grid .cp-card{min-width:0}
+a.tel{color:var(--brand);text-decoration:underline;text-underline-offset:3px}
+@media (min-width:640px){.collectives{padding:26px 30px}}
+
+/* ---------- Carte animée du réseau ---------- */
+.netmap{margin-top:20px}
+.nm-card{padding:22px 18px 18px;border-radius:18px;background:radial-gradient(120% 90% at 50% 40%,#0f2c72 0%,#08194a 55%,#030821 100%);color:#e6f0ff;box-shadow:var(--shadow);overflow:hidden}
+.nm-t{margin:0;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;font:700 1.2rem/1.3 var(--font-display);color:#e6f0ff}
+.nm-num{font:800 2.5rem/1 var(--font-display);color:#ffcf3a;font-variant-numeric:tabular-nums;text-shadow:0 0 18px rgba(255,207,58,.55)}
+.nm-lead{margin:6px 0 0;max-width:46ch;font-size:.95rem;color:#b9cdf5}
+#nm-canvas{display:block;width:100%;max-width:560px;height:auto;aspect-ratio:1/1;margin:8px auto 0}
+.nm-leg{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 22px;margin:6px 0 0;padding:0;list-style:none;font-size:.82rem;color:#b9cdf5}
+.nm-leg li{display:flex;align-items:center;gap:8px}
+.nm-leg .dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:#ffcf3a;box-shadow:0 0 8px 2px rgba(255,207,58,.65)}
+.nm-leg .dot.hq{width:14px;height:14px;background:#fff6d6;box-shadow:0 0 10px 3px rgba(255,207,58,.85)}
+@media (min-width:640px){.nm-card{padding:26px 30px 22px}}
+@media print{.netmap{display:none}}
+
 /* ---------- Pied de page ---------- */
+.foot-brand{display:flex;align-items:center;gap:14px;margin:0 0 22px;padding-bottom:20px;border-bottom:1px solid var(--line)}
+.logo-sm{flex:none;display:grid;place-items:center;width:64px;height:64px;padding:7px;background:#fff;border:1px solid var(--line);border-radius:14px}
+.logo-sm img{display:block;width:100%;height:100%;object-fit:contain}
+.foot-org-fr{margin:0;font:700 .85rem/1.35 'Montserrat','Segoe UI',system-ui,sans-serif;color:var(--ink)}
+.foot-org-ar{margin:2px 0 0;font:600 .85rem/1.5 'Cairo','Segoe UI',system-ui,sans-serif;color:var(--muted)}
+:root[lang="ar"] .foot-orgs{display:flex;flex-direction:column}
+:root[lang="ar"] .foot-org-ar{order:-1;margin:0 0 2px;color:var(--ink);font-weight:700}
+:root[lang="ar"] .foot-org-fr{font-weight:600;color:var(--muted)}
 .site{margin-top:34px;background:var(--surface);border-top:5px solid var(--accent)}
 .site .wrap{padding-block:28px 34px}
 .contact-title{margin:0 0 12px;font:700 .8rem var(--font-display);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
@@ -249,17 +302,19 @@ main.wrap{padding-block:18px 8px}
       <p class="kicker" data-i18n="kicker">Guide des prestations</p>
       <span class="badge" data-i18n="badge">Statut 2026</span>
     </div>
+    <div class="seg modes" id="mode" role="group"></div>
     <h1 data-i18n="title">Quel dossier fournir pour votre prestation&nbsp;?</h1>
     <p class="lead" data-i18n="lead">Indiquez votre situation, puis choisissez la prestation&nbsp;: la liste des pièces à fournir s’affiche.</p>
-    <div class="links">
+    <div class="links m-ind">
     <button type="button" class="linkbtn" id="go-depot"><span data-i18n="depotLink">Où et comment déposer votre dossier&nbsp;?</span><svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><path d="M10 4v11m0 0l-4.5-4.5M10 15l4.5-4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-    <button type="button" class="linkbtn" id="go-forms"><span data-i18n="formsLink">Télécharger le bulletin d’adhésion</span><svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><path d="M10 4v11m0 0l-4.5-4.5M10 15l4.5-4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button type="button" class="linkbtn" id="go-forms"><span data-i18n="formsLink">Adhérer : bulletin et pièces à fournir</span><svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><path d="M10 4v11m0 0l-4.5-4.5M10 15l4.5-4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     </div>
+    <div class="install" id="install" hidden></div>
   </div>
 </section>
 
 <main class="wrap">
-  <section class="controls" aria-label="Filtres">
+  <section class="controls m-ind" aria-label="Filtres">
     <div>
       <span class="lbl" id="lbl-profil" data-i18n="situation">Vous êtes</span>
       <div class="seg" id="profil" role="group" aria-labelledby="lbl-profil"></div>
@@ -272,18 +327,36 @@ main.wrap{padding-block:18px 8px}
     <p class="hint" data-i18n="hint">Ouvrez une prestation, puis cochez les pièces au fur et à mesure.</p>
   </section>
 
-  <p class="count" id="count" aria-live="polite"></p>
-  <div id="list"></div>
+  <p class="count m-ind" id="count" aria-live="polite"></p>
+  <div id="list" class="m-ind"></div>
 
-  <section class="depot" id="depot"></section>
+  <section class="depot m-ind" id="depot"></section>
 
-  <section class="finder" id="centres"></section>
+  <section class="finder m-ind" id="centres"></section>
 
-  <section class="forms" id="forms" aria-labelledby="forms-title"></section>
+  <section class="netmap m-ind" id="netmap" aria-labelledby="nm-title">
+    <div class="nm-card">
+      <h2 class="nm-t" id="nm-title"><span class="nm-num" id="nm-num"></span><span id="nm-t"></span></h2>
+      <p class="nm-lead" id="nm-lead"></p>
+      <canvas id="nm-canvas" width="900" height="900" role="img"></canvas>
+      <ul class="nm-leg"><li><i class="dot" aria-hidden="true"></i><span id="nm-leg-cp"></span></li><li><i class="dot hq" aria-hidden="true"></i><span id="nm-leg-hq"></span></li></ul>
+    </div>
+  </section>
+
+  <section class="forms m-ind" id="forms" aria-labelledby="forms-title"></section>
+
+  <section class="collectives m-col" id="collectives" aria-labelledby="col-title"></section>
 </main>
 
 <footer class="site">
   <div class="wrap">
+    <div class="foot-brand">
+      <span class="logo-sm"><img id="logo2" alt="" width="280" height="263"></span>
+      <div class="foot-orgs">
+        <p class="foot-org-fr" lang="fr" dir="ltr">Mutuelle Générale des Travailleurs de la Poste et des Télécommunications</p>
+        <p class="foot-org-ar" lang="ar" dir="rtl">التعاضدية العامة لعمال البريد والمواصلات</p>
+      </div>
+    </div>
     <section id="contact"></section>
     <p class="foot" data-i18n="foot1"></p>
     <p class="foot" data-i18n="foot2"></p>
@@ -669,6 +742,31 @@ var WILAYAS=[
   {id:'touggourt',fr:'Touggourt',ar:'تقرت',r:'sud',d:'ouargla',m:'n'}
 ];
 
+/* Centre pivot de la zone (proposé en second choix, après le centre le plus proche) : Centre → Alger ; Est → Constantine ; Ouest → Oran ; Sud → Béchar (ouest du Sud, rattaché à Béchar) sinon Ouargla. Règle à valider avec l’équipe. */
+var PIVOT_REGION={centre:'alger',est:'constantine',ouest:'oran'};
+function pivotOf(w){return w.r==='sud'?(w.d==='bechar'?'bechar':'ouargla'):PIVOT_REGION[w.r];}
+
+/* Carte animée : contour de l’Algérie (projection Mercator, Natural Earth) et position des villes des centres payeurs, repère 900 x 900. */
+var NETMAP={"o":[[186.9,605.9],[30.0,502.2],[30.1,437.4],[73.1,405],[84.1,405.3],[87.8,401.3],[92.3,399.4],[100.1,399.4],[107.1,402.4],[110.6,399],[122.2,396.8],[148.9,394.5],[150.3,398.7],[153.8,400.1],[157.7,398.7],[172.5,377.5],[184.7,367.9],[194.9,363],[205.1,352.5],[213.9,348.8],[227.0,346.9],[234.7,342.9],[234.1,336.9],[238.4,331.3],[235.6,325.1],[231.2,320.9],[228.0,322.5],[226.7,321.2],[227.8,313.2],[233.5,310.7],[234.1,298.4],[267.9,291.4],[263.4,279.3],[265.7,277.9],[280.7,275.2],[333.6,277.2],[333.6,274],[329.7,273.5],[332.3,264.4],[341.0,257.8],[325.0,245.8],[319.6,236.6],[321.8,234.6],[321.9,230.5],[314.8,221.8],[314.5,215.5],[317.4,208],[315.3,202],[311.8,199.1],[313.7,195.8],[313.0,189.6],[315.1,180.7],[309.3,166.3],[313.6,161],[306.9,155.3],[311.0,148.1],[302.5,142],[301.4,139.3],[293.7,135.1],[292.5,130.8],[303.3,131.5],[311.3,128.8],[321.5,120.6],[327.2,119.6],[330.3,117.1],[334.8,106.5],[340.7,101.5],[346.8,99.6],[350.3,96.6],[354.7,99.4],[357.4,99.3],[359.4,96.8],[361.6,96.4],[363.6,90.8],[368.8,90],[371.3,93.9],[377.0,95.9],[381.4,94.7],[384.3,92.2],[388.1,82.8],[396.0,77.4],[396.9,75],[401.3,74.1],[409.0,68.8],[418.1,66.3],[422.0,62.2],[438.4,57.7],[441.9,58.7],[466.7,56.6],[477.7,53.2],[482.3,55.6],[488.6,55.2],[496.4,50.3],[502.1,44.5],[505.5,44.3],[509.0,47.3],[512.2,47.9],[514.1,44.3],[524.3,46.1],[529.8,44.5],[535.0,40.3],[540.4,38.9],[549.8,40.7],[556.1,39.3],[568.0,40.7],[577.5,40.1],[590.3,45.9],[589.8,49.1],[598.5,52.9],[605.0,51.8],[608.5,49.5],[610.2,46.2],[616.0,43.3],[621.5,43.7],[634.8,39.7],[637.2,37.5],[637.9,33.5],[643.8,30],[648.9,31.8],[651.2,36.1],[660.2,37.1],[662.5,39.7],[665.4,40.4],[671.3,38.5],[673.9,39.1],[677.0,36.4],[677.9,34],[674.8,30.9],[676.5,30.2],[678.6,31.2],[683.0,30.5],[683.9,32.2],[687.4,32],[691.5,35.4],[696.5,36.6],[700.0,35.1],[698.9,40.4],[702.7,42.2],[710.2,41],[717.5,36.9],[726.9,39.8],[732.6,37.8],[734.2,43.1],[724.8,45.7],[726.9,48.4],[725.6,51.9],[715.0,58.8],[714.9,60.6],[722.4,62.7],[722.8,64.6],[720.6,73],[721.0,78],[718.1,90],[718.1,96.1],[721.5,104.3],[720.0,119.1],[725.7,123.3],[720.3,131.9],[718.3,140.1],[719.0,147.7],[716.6,151.1],[717.7,152.7],[712.0,158.5],[701.3,164.3],[698.6,172.6],[693.1,174.8],[688.5,180],[686.9,189.8],[690.0,201.3],[696.3,213.2],[696.9,222.1],[711.7,228.8],[720.2,242.8],[721.6,256.3],[750.6,278.1],[769.9,365.6],[760.4,371],[771.1,385.7],[775.9,394.8],[782.4,417.2],[783.4,433.1],[780.3,457.1],[786.8,477.4],[783.8,486.9],[781.0,489.2],[782.2,492.1],[779.6,495.9],[778.1,501.9],[782.7,519.7],[785.6,521.7],[785.1,531],[782.8,537.8],[768.5,544.7],[764.1,553],[789.7,590.8],[790.7,612.1],[797.3,616.9],[799.3,623.8],[806.1,629.3],[818.7,625.7],[852.0,637.1],[869.4,671.8],[687.1,787.9],[618.4,849.6],[518.3,870],[509.1,863.1],[512.6,854.9],[515.4,852.2],[512.9,845.1],[512.9,833.5],[502.7,828.4],[480.4,823.4],[477.1,818],[471.7,813.7],[467.1,816.6],[462.9,814.8],[459.8,815.8],[458.3,813],[455.1,812.6],[450.3,808.6],[449.0,801.9],[438.3,797.3],[435.7,794],[429.8,793.8],[430.8,781.7],[429.5,778]],"n":{"alger":[507.2,47.3],"blida":[497.8,61.6],"ain-defla":[473.3,70],"chlef":[437.1,77],"tizi-ouzou":[547.5,49.1],"bejaia":[588.5,47.4],"setif":[602.9,75.8],"constantine":[651.8,67],"annaba":[698.6,39.9],"oum-el-bouaghi":[672.1,91.6],"tebessa":[713.2,115.2],"khenchela":[673.3,113.6],"mostaganem":[386.5,88.8],"oran":[357.2,100.5],"sidi-bel-abbes":[357.2,125.8],"el-bayadh":[424.4,200.3],"bechar":[292.8,299.9],"ouargla":[599.7,284]}};
+
+
+/* ===== Prestations collectives : adresses et numéros relevés sur l’affiche « Le guide du mutualiste » (photos du 02/11/2026). Tébessa et Khenchela retirés (non fonctionnels, 02/11/2026) ; seul le centre de repos de Bouhanifia est en service. Numéros à confirmer auprès des chefs de centre. ===== */
+var COLLECTIVES=[
+  {id:'ain-defla',type:'cms',fr:'Aïn Defla',ar:'عين الدفلى',addr:{fr:'Les Belles Sources, Miliana',ar:'الينابيع الجميلة، مليانة'},tel:'027 54 61 15'},
+  {id:'alger-1',type:'cms',fr:'Alger 01',ar:'الجزائر العاصمة 01',addr:{fr:'10, rue El Idrissi',ar:'10 شارع الإدريسي'},tel:'044 19 65 04'},
+  {id:'alger-2',type:'cms',fr:'Alger 02',ar:'الجزائر العاصمة 02',addr:{fr:'17, rue Ahcene Khemissa',ar:'17 شارع أحسن خميسة'},tel:'044 19 09 48'},
+  {id:'constantine-1',type:'cms',fr:'Constantine 01',ar:'قسنطينة 01',addr:{fr:'Cité Ciloc, Kaddour Boumedous',ar:'حي سيلوك، قدور بومدوس'},tel:'031 92 64 15'},
+  {id:'constantine-2',type:'cms',fr:'Constantine 02',ar:'قسنطينة 02',addr:{fr:'Cité Mentouri, bât. n° 02, Sidi Mabrouk (ex-El Bosquet)',ar:'حي منتوري، عمارة رقم 02، سيدي مبروك (البوسكي سابقًا)'}},
+  {id:'ghardaia',type:'cms',fr:'Ghardaïa',ar:'غرداية',addr:{fr:'Place du 19 Mai',ar:'ساحة 19 ماي'},tel:'029 25 10 55'},
+  {id:'medea',type:'cms',fr:'Médéa',ar:'المدية',addr:{fr:'Rue Segdi Ahmed',ar:'شارع سقدي أحمد'},tel:'025 80 43 70'},
+  {id:'mostaganem',type:'cms',fr:'Mostaganem',ar:'مستغانم',addr:{fr:'Rue Bensaadoune Manouar, Pépinière',ar:'شارع بن سعدون منور، المشتلة'},tel:'045 41 79 01'},
+  {id:'oran',type:'cms',fr:'Oran',ar:'وهران',addr:{fr:'10, rue du 20 Août',ar:'10 شارع 20 أوت'},tel:'041 33 55 40'},
+  {id:'setif',type:'cms',fr:'Sétif',ar:'سطيف',addr:{fr:'Complexe des PTT, rue de l’ALN, centre-ville',ar:'مركب البريد والمواصلات، وسط المدينة'},tel:'036 82 81 30'},
+  {id:'lab-alger',type:'lab',fr:'Alger',ar:'الجزائر العاصمة',addr:{fr:'06, rue Tindouf',ar:'06 شارع تندوف'},tel:'028 53 57 89'},
+  {id:'lab-oran',type:'lab',fr:'Oran',ar:'وهران',addr:{fr:'10, rue du 20 Août',ar:'10 شارع 20 أوت'},tel:'041 33 55 40'},
+  {id:'bouhanifia',type:'repos',fr:'Bouhanifia',ar:'بوحنيفية',addr:{fr:'Wilaya de Mascara',ar:'ولاية معسكر'},tel:'045 76 71 12'}
+];
+
 /*DATA-END*/
 
 /* ===== Langue : français / arabe (même page, bascule instantanée) ===== */
@@ -691,7 +789,19 @@ var T={
     title:'Quel dossier fournir pour votre prestation ?',
     lead:'Indiquez votre situation, puis choisissez la prestation : la liste des pièces à fournir s’affiche.',
     depotLink:'Où et comment déposer votre dossier ?',
-    formsLink:'Télécharger le bulletin d’adhésion',
+    formsLink:'Adhérer : bulletin et pièces à fournir',
+    install:{title:'Installer l’outil sur votre téléphone',btn:'Installer',note:'Accès rapide depuis l’écran d’accueil, même sans connexion.',ios:'Sur iPhone : touchez le bouton Partager, puis « Sur l’écran d’accueil ».'},
+    modesLabel:'Type de prestations',
+    modes:{ind:'Prestations individuelles',col:'Prestations collectives'},
+    colTitle:'Centres médico-sociaux, laboratoires et centres de repos',
+    colLead:'Adresses et numéros de téléphone des structures sociales et sanitaires de la MGPTT.',
+    col:{title:'Adresses et contacts',
+      intro:'Les prestations collectives de la MGPTT comprennent des services de santé dans les centres médico-sociaux répartis sur le territoire national, ainsi que l’hébergement dans ses centres de repos.',
+      filterLabel:'Type de structure',all:'Toutes',
+      chips:{cms:'Centres médico-sociaux',lab:'Laboratoires',repos:'Centres de repos'},
+      groups:{cms:'Centres médico-sociaux',lab:'Laboratoires d’analyses médicales',repos:'Centres de repos'},
+      reposNote:'Ouverts aux adhérents comme aux non-adhérents du secteur de la Poste et des Télécommunications (statut, art. 45). Renseignez-vous auprès du centre pour les conditions de séjour.',
+      tel:'Tél.',noTel:'Téléphone : renseignez-vous auprès de la mutuelle.'},
     sign:'Outil créé par Fathi Yasmine, Sous-Directrice des Prestations Collectives, MGPTT.',
     situation:'Vous êtes',
     search:'Rechercher une prestation',
@@ -708,7 +818,10 @@ var T={
     empty:'Aucune prestation ne correspond à cette recherche.',
     reset:'Voir toutes les prestations',
     count:function(n){return n+(n>1?' prestations':' prestation');},
-    forms:{title:'Bulletin d’adhésion',intro:'Pour adhérer à la MGPTT, téléchargez le bulletin correspondant à votre situation, imprimez-le puis remplissez-le. Le formulaire est bilingue (français et arabe).',
+    forms:{title:'Adhérer à la MGPTT',intro:'Choisissez votre situation, téléchargez le bulletin d’adhésion correspondant, imprimez-le puis remplissez-le (formulaire bilingue, français et arabe). Joignez-y les pièces indiquées.',piecesTitle:'Pièces à fournir',
+      pieces:{
+        actif:['Bulletin d’adhésion rempli','Une fiche de paie ou un chèque barré'],
+        retraite:['Bulletin d’adhésion rempli','Attestation de revenu CNR','Photocopie de la carte Chifa','Chèque barré','Photocopie de la décision de retraite']},
       doc:'Bulletin d’adhésion',page:function(n){return n+(n>1?' pages':' page');},size:function(k){return k+' Ko';},dl:'Télécharger le bulletin',err:'Le téléchargement n’a pas abouti. Veuillez réessayer.'},
     depot:{
       title:'Comment déposer votre dossier',
@@ -724,6 +837,8 @@ var T={
       rows:[
         {k:'Siège',v:'15, rue des Frères Meslem, Sidi Mohamed, Alger'},
         {k:'Adresse postale',v:'BP 63-16010 Ferhat Boussaad, Alger'},
+        {k:'Téléphone',v:'044 40 71 80',href:'tel:+21344407180',ltr:true},
+        {k:'Fax',v:'044 40 74 83',ltr:true},
         {k:'Site internet',v:'www.mgptt.dz',href:'https://www.mgptt.dz',ltr:true},
         {k:'E-mail',v:'adhesion.mgptt@gmail.com',ltr:true},
         {k:'Facebook',v:'facebook.com/mgtpttn.dz',href:'https://www.facebook.com/mgtpttn.dz',ltr:true}
@@ -735,7 +850,10 @@ var T={
         pivotText:function(x,r){return 'Pas de centre payeur à proximité de votre wilaya. Déposez votre dossier au centre pivot de votre région ('+r+') : centre payeur '+deFr(x)+'.';},
         telFixe:'Tél. fixe',telMob:'Mobile',
         otherText:'Vous pouvez aussi envoyer votre dossier par courrier postal (renseignez-vous auprès de la mutuelle pour l’adresse d’envoi).',
-        all:'Voir tous les centres payeurs',centre:'Centre payeur',centreN:function(i){return 'Centre payeur '+i;}},
+        all:'Voir tous les centres payeurs',centre:'Centre payeur',centreN:function(i){return 'Centre payeur '+i;},
+        nearPivotText:function(x,y){return 'Pas de centre payeur dans votre wilaya. Le plus proche est celui '+deFr(x)+' : déposez-y votre dossier. Sinon, vous pouvez le déposer au centre pivot de votre zone : celui '+deFr(y)+'.';},
+        nearLabel:'Centre le plus proche',pivotLabel:'Centre pivot de la zone'},
+    net:{n:'centres payeurs',lead:'Un réseau relié au siège d’Alger, au service des adhérents dans tout le pays.',legCp:'Centre payeur',legHq:'Siège (Alger)',aria:'Carte animée de l’Algérie : les centres payeurs de la MGPTT, reliés au siège d’Alger.'},
     foot1:'Montants, taux, plafonds, durées de validité et fréquences : statut de la MGPTT, version 2026 (prestations du régime général). Pièces à fournir et conditions d’attribution : guide des procédures d’octroi et de remboursement des prestations, complété par les justificatifs cités dans le statut. Montants en dinars algériens (DA).',
     foot2:'Le total remboursé par la sécurité sociale et par la MGPTT ne peut jamais dépasser 100 % des frais engagés. Les nouveaux adhérents ne sont pas soumis à la durée de validité : leurs droits courent à partir de la date d’adhésion. Pour toute question sur votre dossier, rapprochez-vous de la mutuelle.'
   },
@@ -747,7 +865,19 @@ var T={
     title:'ما هي الوثائق التي يجب تقديمها للاستفادة من الأداء؟',
     lead:'حدّد وضعيتك ثم اختر الأداء، لتظهر لك قائمة الوثائق المطلوبة.',
     depotLink:'أين وكيف تودع ملفك؟',
-    formsLink:'تحميل استمارة الانخراط',
+    formsLink:'الانخراط: الاستمارة والوثائق المطلوبة',
+    install:{title:'ثبّت الأداة على هاتفك',btn:'تثبيت',note:'وصول سريع من الشاشة الرئيسية، حتى بدون اتصال بالإنترنت.',ios:'على الآيفون: اضغط على زر «مشاركة» ثم «إضافة إلى الشاشة الرئيسية».'},
+    modesLabel:'نوع الأداءات',
+    modes:{ind:'الأداءات الفردية',col:'الأداءات الجماعية'},
+    colTitle:'المراكز الطبية الاجتماعية ومراكز التحاليل ومراكز الراحة',
+    colLead:'عناوين وأرقام هواتف الهياكل الاجتماعية والصحية للتعاضدية.',
+    col:{title:'العناوين وأرقام الهاتف',
+      intro:'تشمل الأداءات الجماعية للتعاضدية خدمات صحية على مستوى المراكز الطبية الاجتماعية عبر التراب الوطني، وخدمات الإقامة بمراكز الراحة التابعة لها.',
+      filterLabel:'نوع الهيكل',all:'الكل',
+      chips:{cms:'المراكز الطبية الاجتماعية',lab:'مراكز التحاليل',repos:'مراكز الراحة'},
+      groups:{cms:'المراكز الطبية الاجتماعية',lab:'مراكز التحاليل الطبية',repos:'مراكز الراحة'},
+      reposNote:'مفتوحة للمنخرطين وغير المنخرطين من قطاع البريد والمواصلات (القانون الأساسي، المادة 45). للاطلاع على شروط الإقامة، يُرجى الاتصال بالمركز.',
+      tel:'الهاتف',noTel:'الهاتف: استفسر لدى التعاضدية.'},
     sign:'أُنجزت هذه الأداة من طرف فتحي ياسمين، مديرة فرعية للأداءات الجماعية، التعاضدية العامة لعمال البريد والمواصلات.',
     situation:'وضعيتك',
     search:'ابحث عن أداء',
@@ -764,7 +894,10 @@ var T={
     empty:'لا يوجد أداء مطابق لهذا البحث.',
     reset:'عرض كل الأداءات',
     count:function(n){return 'عدد الأداءات: '+n;},
-    forms:{title:'استمارة الانخراط',intro:'للانخراط في التعاضدية، حمّل الاستمارة الخاصة بوضعيتك ثم اطبعها واملأها. الاستمارة ثنائية اللغة (العربية والفرنسية).',
+    forms:{title:'الانخراط في التعاضدية',intro:'اختر وضعيتك، ثم حمّل استمارة الانخراط الخاصة بها واطبعها واملأها (الاستمارة ثنائية اللغة: العربية والفرنسية)، وأرفقها بالوثائق المبيّنة.',piecesTitle:'الوثائق المطلوبة',
+      pieces:{
+        actif:['استمارة الانخراط مملوءة','كشف الراتب أو شيك مشطوب'],
+        retraite:['استمارة الانخراط مملوءة','شهادة الدخل (CNR – الصندوق الوطني للتقاعد)','نسخة من بطاقة الشفاء','شيك مشطوب','نسخة من مقرر الإحالة على التقاعد']},
       doc:'استمارة الانخراط',page:function(n){return n===1?'صفحة واحدة':(n===2?'صفحتان':n+' صفحات');},size:function(k){return k+' ك.ب';},dl:'تحميل الاستمارة',err:'تعذّر التحميل. يُرجى المحاولة مرة أخرى.'},
     depot:{
       title:'كيف تودع ملفك؟',
@@ -780,6 +913,8 @@ var T={
       rows:[
         {k:'المقر',v:'15 شارع الإخوة مسلم، سيدي محمد، الجزائر'},
         {k:'العنوان البريدي',v:'ص.ب 63-16010 فرحات بوسعد، الجزائر'},
+        {k:'الهاتف',v:'044 40 71 80',href:'tel:+21344407180',ltr:true},
+        {k:'الفاكس',v:'044 40 74 83',ltr:true},
         {k:'الموقع الإلكتروني',v:'www.mgptt.dz',href:'https://www.mgptt.dz',ltr:true},
         {k:'البريد الإلكتروني',v:'adhesion.mgptt@gmail.com',ltr:true},
         {k:'فيسبوك',v:'facebook.com/mgtpttn.dz',href:'https://www.facebook.com/mgtpttn.dz',ltr:true}
@@ -791,7 +926,10 @@ var T={
         pivotText:function(x,r){return 'لا يوجد مركز دفع قريب من ولايتك. أودع ملفك لدى مركز الدفع المحوري لمنطقتك (منطقة '+r+'): مركز '+x+'.';},
         telFixe:'الهاتف الثابت',telMob:'الجوال',
         otherText:'يمكنك أيضًا إرسال ملفك عبر البريد (استفسر لدى التعاضدية عن عنوان الإرسال).',
-        all:'عرض كل مراكز الدفع',centre:'مركز الدفع',centreN:function(i){return 'مركز الدفع '+i;}},
+        all:'عرض كل مراكز الدفع',centre:'مركز الدفع',centreN:function(i){return 'مركز الدفع '+i;},
+        nearPivotText:function(x,y){return 'لا يوجد مركز دفع في ولايتك. أقرب مركز دفع إليك هو مركز '+x+': أودع ملفك لديه. وإلا فيمكنك إيداعه لدى مركز الدفع المحوري لمنطقتك: مركز '+y+'.';},
+        nearLabel:'أقرب مركز دفع',pivotLabel:'مركز الدفع المحوري للمنطقة'},
+    net:{n:'مركزًا للدفع',lead:'شبكة مرتبطة بالمقر في الجزائر العاصمة، في خدمة المنخرطين عبر كامل الوطن.',legCp:'مركز دفع',legHq:'المقر (الجزائر العاصمة)',aria:'خريطة متحركة للجزائر: مراكز دفع التعاضدية مرتبطة بالمقر في الجزائر العاصمة.'},
     foot1:'المبالغ والنسب والسقوف وآجال الصلاحية والوتيرة مأخوذة من القانون الأساسي للتعاضدية، نسخة 2026 (أداءات النظام العام). الوثائق المطلوبة وشروط المنح مأخوذة من دليل إجراءات منح الأداءات وتعويضها، مع إضافة الوثائق الثبوتية المذكورة في القانون الأساسي. المبالغ بالدينار الجزائري (دج).',
     foot2:'لا يمكن أن يتجاوز مجموع ما يعوّضه الضمان الاجتماعي والتعاضدية 100% من المصاريف المنفقة. المنخرطون الجدد غير معنيين بأجل الصلاحية: تسري حقوقهم ابتداءً من تاريخ الانخراط. لأي استفسار بخصوص ملفكم، يُرجى التقرب من التعاضدية.'
   }
@@ -802,7 +940,8 @@ function t(k){return T[lang][k];}
 var AR_KEYS={scanner:'سكانير',echographie:'ايكوغرافي',mammographie:'ماموغرافي','radio-standard':'راديو',chirurgie:'فتق','pet-scan':'بيت سكان',irm:'ايرم',ecg:'تخطيط القلب'};
 var AR_CAT_KEYS={optique:'نظارات نظارة بصريات',imagerie:'اشعة راديو'};
 
-var state={profil:'actif',cat:'all',q:'',open:{},checks:{}};
+var state={profil:'actif',cat:'all',q:'',open:{},checks:{},mode:'ind',colType:'all'};
+try{if(location.hash==='#collectives')state.mode='col';}catch(e){}
 try{var saved=localStorage.getItem('mgptt-profil');if(saved&&PROFILS[saved])state.profil=saved;}catch(e){}
 
 function norm(s){
@@ -828,7 +967,7 @@ function pieceText(p){
   return lang==='ar'?(PIECE_AR[p]||p):p;
 }
 
-var els={forms:document.getElementById('forms'),centres:document.getElementById('centres'),depot:document.getElementById('depot'),contact:document.getElementById('contact'),logo:document.getElementById('logo'),lang:document.getElementById('lang'),profil:document.getElementById('profil'),cats:document.getElementById('cats'),q:document.getElementById('q'),count:document.getElementById('count'),list:document.getElementById('list')};
+var els={collectives:document.getElementById('collectives'),forms:document.getElementById('forms'),centres:document.getElementById('centres'),depot:document.getElementById('depot'),contact:document.getElementById('contact'),logo:document.getElementById('logo'),lang:document.getElementById('lang'),profil:document.getElementById('profil'),cats:document.getElementById('cats'),q:document.getElementById('q'),count:document.getElementById('count'),list:document.getElementById('list')};
 
 function checkboxHtml(key,text){
   return '<li><label><input type="checkbox" data-key="'+esc(key)+'"'+(state.checks[key]?' checked':'')+'><span>'+esc(text)+'</span></label></li>';
@@ -931,23 +1070,28 @@ function renderStatic(){
 }
 
 var cpSel='';
+/* Numéro cliquable (appel direct depuis un téléphone) : 0XX XX XX XX → tel:+213XXXXXXXX. */
+function telLink(num){
+  var d=String(num).replace(/\D/g,'').replace(/^0/,'');
+  return '<a class="tel" href="tel:+213'+d+'"><bdi dir="ltr">'+esc(num)+'</bdi></a>';
+}
 function telLines(w,C,mode){
   var rows=[];
   if(w.fixe)rows.push([C.telFixe,w.fixe]);
   if(w.mob)rows.push([C.telMob,w.mob]);
-  if(mode==='p')return rows.map(function(r){return '<p class="cp-t"><span>'+esc(r[0])+'</span> <bdi dir="ltr">'+esc(r[1])+'</bdi></p>';}).join('');
-  return rows.map(function(r){return '<br>'+esc(r[0])+' <bdi dir="ltr">'+esc(r[1])+'</bdi>';}).join('');
+  if(mode==='p')return rows.map(function(r){return '<p class="cp-t"><span>'+esc(r[0])+'</span> '+telLink(r[1])+'</p>';}).join('');
+  return rows.map(function(r){return '<br>'+esc(r[0])+' '+telLink(r[1]);}).join('');
 }
-function cpCard(w,c,i,n){
+function cpCard(w,c,i,n,label){
   var ar=lang==='ar',C=t('cp');
   var tel=(i===0)?telLines(w,C,'p'):'';
-  return '<div class="cp-card"><p class="cp-k">'+esc(n>1?C.centreN(i+1):C.centre)+'</p><p class="cp-w">'+esc(ar?w.ar:w.fr)+'</p><p class="cp-a">'+esc(c.none?C.noAddress:(ar?c.ar:c.fr))+'</p>'+tel+'</div>';
+  return '<div class="cp-card"><p class="cp-k">'+esc(label||(n>1?C.centreN(i+1):C.centre))+'</p><p class="cp-w">'+esc(ar?w.ar:w.fr)+'</p><p class="cp-a">'+esc(c.none?C.noAddress:(ar?c.ar:c.fr))+'</p>'+tel+'</div>';
 }
-function cpCards(ids){
+function cpCards(ids,label){
   var out='';
   ids.forEach(function(id){
     var w=CENTRES.filter(function(x){return x.id===id;})[0];
-    if(w)w.c.forEach(function(c,i){out+=cpCard(w,c,i,w.c.length);});
+    if(w)w.c.forEach(function(c,i){out+=cpCard(w,c,i,w.c.length,label);});
   });
   return out;
 }
@@ -961,6 +1105,10 @@ function cpResultHtml(){
   var dest=CENTRES.filter(function(x){return x.id===w.d;})[0];
   if(!dest)return '<p class="cp-reg-intro">'+esc(C.regionText(ar?r.ar:r.fr))+'</p>'+cpCards(r.dest)+'<p class="cp-other">'+esc(C.otherText)+'</p>';
   var dn=ar?dest.ar:dest.fr;
+  var pvId=pivotOf(w),pv=CENTRES.filter(function(x){return x.id===pvId;})[0];
+  if(w.m!=='p'&&pv&&pv.id!==dest.id){
+    return '<p class="cp-reg-intro">'+esc(C.nearPivotText(dn,ar?pv.ar:pv.fr))+'</p>'+cpCards([w.d],C.nearLabel)+cpCards([pv.id],C.pivotLabel)+'<p class="cp-other">'+esc(C.otherText)+'</p>';
+  }
   var intro=w.m==='p'?C.pivotText(dn,ar?r.ar:r.fr):C.nearText(dn);
   return '<p class="cp-reg-intro">'+esc(intro)+'</p>'+cpCards([w.d])+'<p class="cp-other">'+esc(C.otherText)+'</p>';
 }
@@ -993,6 +1141,7 @@ function renderForms(){
   els.forms.innerHTML='<h2 class="cp-title" id="forms-title">'+esc(F.title)+'</h2><p class="cp-intro">'+esc(F.intro)+'</p><div class="forms-grid">'
     +FORMS.map(function(f){
       return '<div class="form-card" data-current="'+(f.profil===state.profil)+'"><h3>'+esc(profLabel(f.profil))+'</h3>'
+        +'<p class="fp-t">'+esc(F.piecesTitle)+'</p><ul class="fpieces">'+(F.pieces[f.profil]||[]).map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>'
         +'<p class="fmeta"><span>'+esc(F.page(f.pages))+'</span> · <span>PDF</span> · <bdi>'+esc(F.size(f.ko))+'</bdi></p>'
         +'<a class="dl" data-form="'+f.id+'" href="'+esc(f.file)+'" download="'+esc(f.name)+'" target="_blank" rel="noopener">'
         +'<svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 16h12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
@@ -1029,7 +1178,8 @@ function applyLang(){
   els.q.setAttribute('placeholder',t('ph'));
   document.querySelector('.controls').setAttribute('aria-label',t('filters'));
   els.cats.setAttribute('aria-label',t('groups'));
-  buildControls();syncControls();render();renderStatic();renderCentres();renderForms();
+  var l2=document.getElementById('logo2');if(l2)l2.setAttribute('alt',t('logoAlt'));
+  buildControls();syncControls();render();renderStatic();renderCentres();renderForms();renderNet();renderCollectives();renderMode();renderInstall();
 }
 
 document.getElementById('go-depot').addEventListener('click',function(){
@@ -1076,10 +1226,191 @@ els.list.addEventListener('change',function(e){
   state.checks[cb.getAttribute('data-key')]=cb.checked;
 });
 
+/* ===== Installation sur l’écran d’accueil (PWA) : affichée seulement sur le site en ligne (manifeste présent) ===== */
+var deferredInstall=null;
+function isStandalone(){try{return window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true;}catch(e){return false;}}
+function isIOS(){var ua=navigator.userAgent||'';return /iPad|iPhone|iPod/.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);}
+function renderInstall(){
+  var box=document.getElementById('install');if(!box)return;
+  var site=!!document.querySelector('link[rel="manifest"]');
+  var show=site&&!isStandalone()&&(deferredInstall||isIOS());
+  box.hidden=!show;
+  if(!show){box.innerHTML='';return;}
+  var I=t('install');
+  box.innerHTML='<p class="inst-t">'+esc(I.title)+'</p>'
+    +(deferredInstall?'<button type="button" class="btn-inst" id="inst-btn">'+esc(I.btn)+'</button><p class="inst-h">'+esc(I.note)+'</p>':'<p class="inst-h">'+esc(I.ios)+' '+esc(I.note)+'</p>');
+}
+window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();deferredInstall=e;renderInstall();});
+window.addEventListener('appinstalled',function(){deferredInstall=null;renderInstall();});
+document.getElementById('install').addEventListener('click',function(e){
+  if(!e.target.closest('#inst-btn')||!deferredInstall)return;
+  deferredInstall.prompt();
+  deferredInstall.userChoice.then(function(){deferredInstall=null;renderInstall();});
+});
+
+/* ===== Prestations collectives : CMS, laboratoires, centres de repos ===== */
+function colCard(x){
+  var ar=lang==='ar',C=t('col');
+  return '<div class="cp-card"><p class="cp-w">'+esc(ar?x.ar:x.fr)+'</p><p class="cp-a">'+esc(ar?x.addr.ar:x.addr.fr)+'</p>'
+    +'<p class="cp-t"><span>'+esc(x.tel?C.tel:C.noTel)+'</span>'+(x.tel?' '+telLink(x.tel):'')+'</p></div>';
+}
+function renderCollectives(){
+  var C=t('col'),f=state.colType||'all',types=['cms','lab','repos'];
+  var chips='<div class="chips" id="col-chips" role="group" aria-label="'+esc(C.filterLabel)+'">'
+    +[['all',C.all]].concat(types.map(function(k){return [k,C.chips[k]];})).map(function(x){
+      return '<button type="button" data-col="'+x[0]+'" aria-pressed="'+(f===x[0])+'">'+esc(x[1])+'</button>';
+    }).join('')+'</div>';
+  var html='<h2 class="cp-title" id="col-title">'+esc(C.title)+'</h2><p class="cp-intro">'+esc(C.intro)+'</p>'+chips;
+  types.forEach(function(k){
+    if(f!=='all'&&f!==k)return;
+    var rows=COLLECTIVES.filter(function(x){return x.type===k;});
+    html+='<h3 class="col-h">'+esc(C.groups[k])+'<span>'+rows.length+'</span></h3>'
+      +(k==='repos'?'<p class="col-note">'+esc(C.reposNote)+'</p>':'')
+      +'<div class="col-grid">'+rows.map(colCard).join('')+'</div>';
+  });
+  els.collectives.innerHTML=html;
+}
+function renderMode(){
+  var col=state.mode==='col',M=t('modes'),box=document.getElementById('mode');
+  document.body.setAttribute('data-mode',col?'col':'ind');
+  var h=document.querySelector('h1'),l=document.querySelector('.lead');
+  if(h)h.textContent=t(col?'colTitle':'title');
+  if(l)l.textContent=t(col?'colLead':'lead');
+  box.setAttribute('aria-label',t('modesLabel'));
+  box.innerHTML=['ind','col'].map(function(k){
+    return '<button type="button" data-mode="'+k+'" aria-pressed="'+(state.mode===k)+'">'+esc(M[k])+'</button>';
+  }).join('');
+}
+document.getElementById('mode').addEventListener('click',function(e){
+  var b=e.target.closest('button[data-mode]');if(!b)return;
+  var next=b.getAttribute('data-mode');if(next===state.mode)return;
+  state.mode=next;renderMode();
+  try{history.replaceState(null,'',next==='col'?'#collectives':location.pathname+location.search);}catch(err){}
+  var nb=document.querySelector('#mode button[data-mode="'+next+'"]');if(nb)nb.focus();
+});
+els.collectives.addEventListener('click',function(e){
+  var b=e.target.closest('button[data-col]');if(!b)return;
+  state.colType=b.getAttribute('data-col');renderCollectives();
+  var nb=els.collectives.querySelector('button[data-col="'+state.colType+'"]');if(nb)nb.focus();
+});
+
+/* ===== Réseau des centres payeurs : textes + carte animée (canvas) ===== */
+function renderNet(){
+  var N=t('net');
+  document.getElementById('nm-num').textContent=CENTRES.length;
+  document.getElementById('nm-t').textContent=N.n;
+  document.getElementById('nm-lead').textContent=N.lead;
+  document.getElementById('nm-leg-cp').textContent=N.legCp;
+  document.getElementById('nm-leg-hq').textContent=N.legHq;
+  document.getElementById('nm-canvas').setAttribute('aria-label',N.aria);
+}
+(function(){var l2=document.getElementById('logo2');if(l2&&els.logo)l2.src=els.logo.src;})();
+(function startNetmap(){
+  var cv=document.getElementById('nm-canvas');
+  if(!cv||!cv.getContext||typeof NETMAP==='undefined')return;
+  var ctx=cv.getContext('2d'),U=900,o=NETMAP.o,GOLD='255,207,58',BLUE='88,170,255',ICE='190,225,255',S=1;
+  var nodes=Object.keys(NETMAP.n).map(function(id){return {id:id,x:NETMAP.n[id][0],y:NETMAP.n[id][1]};});
+  var hub=nodes.filter(function(n){return n.id==='alger';})[0];
+  if(!hub)return;
+  function cl(x,a,b){return Math.min(b,Math.max(a,x));}
+  function pr(t,a,b){return cl((t-a)/(b-a),0,1);}
+  function eo(p){return 1-Math.pow(1-p,3);}
+  function eio(p){return p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;}
+  function eb(p){var c1=1.70158,c3=c1+1;return 1+c3*Math.pow(p-1,3)+c1*Math.pow(p-1,2);}
+  var maxD=0;
+  nodes.forEach(function(n){n.d=Math.hypot(n.x-hub.x,n.y-hub.y);if(n.d>maxD)maxD=n.d;});
+  nodes.forEach(function(n){n.ap=n===hub?0.9:1.3+n.d/maxD*1.5;});
+  var olen=Math.hypot(o[0][0]-o[o.length-1][0],o[0][1]-o[o.length-1][1]);for(var i=1;i<o.length;i++)olen+=Math.hypot(o[i][0]-o[i-1][0],o[i][1]-o[i-1][1]);
+  var stars=[],mesh=[],seen={};
+  nodes.forEach(function(n,i){
+    if(n===hub)return;
+    stars.push({a:hub,b:n,c:{x:(n.x+hub.x)/2,y:(n.y+hub.y)/2-n.d*0.22},t0:n.ap+0.15,dur:1.1,per:3.4+((i*37)%10)/10,ph:((i*53)%100)/100});
+  });
+  nodes.forEach(function(n){
+    nodes.filter(function(m){return m!==n;}).map(function(m){return {m:m,d:Math.hypot(m.x-n.x,m.y-n.y)};})
+      .sort(function(a,b){return a.d-b.d;}).slice(0,2).forEach(function(q){
+        var m=q.m,k=[n.id,m.id].sort().join('|');if(seen[k])return;seen[k]=1;
+        mesh.push({a:n,b:m,c:{x:(n.x+m.x)/2,y:(n.y+m.y)/2-q.d*0.10},t0:3.6+mesh.length*0.07,dur:1,per:4.6+(mesh.length%7)*0.3,ph:(mesh.length*0.37)%1});
+      });
+  });
+  function bez(l,p){var q=1-p;return {x:q*q*l.a.x+2*q*p*l.c.x+p*p*l.b.x,y:q*q*l.a.y+2*q*p*l.c.y+p*p*l.b.y};}
+  function link(l,p,col,wd,blur){
+    if(p<=0)return;
+    var N=Math.max(8,Math.round(50*p));
+    ctx.beginPath();
+    for(var i=0;i<=N;i++){var pt=bez(l,p*i/N);if(i)ctx.lineTo(pt.x,pt.y);else ctx.moveTo(pt.x,pt.y);}
+    ctx.strokeStyle=col;ctx.lineWidth=wd;ctx.shadowColor='rgba('+BLUE+',.9)';ctx.shadowBlur=blur*S;ctx.stroke();
+  }
+  function pulse(l,p,rgb,size,alpha){
+    var tail=0.16,N=12;
+    for(var i=0;i<N;i++){
+      var pp=p-tail*(i/N);if(pp<0)continue;
+      var pt=bez(l,pp),a=alpha*Math.pow(1-i/N,2);
+      ctx.fillStyle='rgba('+rgb+','+a+')';ctx.beginPath();ctx.arc(pt.x,pt.y,size*(1-i/N*0.6),0,6.2832);ctx.fill();
+    }
+  }
+  function draw(t){
+    var w=Math.max(1,Math.round(cv.getBoundingClientRect().width*Math.min(window.devicePixelRatio||1,2)));
+    if(cv.width!==w){cv.width=w;cv.height=w;}
+    S=w/U;ctx.setTransform(S,0,0,S,0,0);ctx.clearRect(0,0,U,U);ctx.lineJoin='round';ctx.lineCap='round';
+    // contour
+    var pOut=eio(pr(t,0,2)),pFill=eo(pr(t,0.6,2.4));
+    ctx.beginPath();o.forEach(function(p,i){if(i)ctx.lineTo(p[0],p[1]);else ctx.moveTo(p[0],p[1]);});ctx.closePath();
+    ctx.save();ctx.globalAlpha=pFill;ctx.fillStyle='rgba(40,100,230,0.14)';ctx.shadowBlur=0;ctx.fill();ctx.restore();
+    ctx.save();ctx.setLineDash([olen*pOut,olen*2]);
+    ctx.shadowColor='rgba('+BLUE+',.9)';ctx.shadowBlur=22*S;ctx.strokeStyle='rgba('+BLUE+',.55)';ctx.lineWidth=3;ctx.stroke();
+    ctx.shadowBlur=6*S;ctx.strokeStyle='rgba('+ICE+',.95)';ctx.lineWidth=1.4;ctx.stroke();ctx.restore();
+    // maillage discret
+    ctx.save();
+    mesh.forEach(function(l){var p=eo(pr(t,l.t0,l.t0+l.dur));link(l,p,'rgba('+BLUE+',0.32)',1.2,8);});
+    // liens vers le siège
+    stars.forEach(function(l){var p=eo(pr(t,l.t0,l.t0+l.dur));if(p<=0)return;link(l,p,'rgba('+BLUE+',0.22)',5,20);link(l,p,'rgba('+ICE+',0.85)',1.8,10);});
+    ctx.restore();
+    // impulsions
+    ctx.save();ctx.shadowColor='rgba('+GOLD+',.95)';ctx.shadowBlur=12*S;
+    stars.forEach(function(l){if(t<l.t0+l.dur)return;pulse(l,((t-l.t0-l.dur)/l.per+l.ph)%1,GOLD,3.8,0.95);});
+    ctx.shadowColor='rgba('+BLUE+',.9)';ctx.shadowBlur=7*S;
+    mesh.forEach(function(l){if(t<l.t0+l.dur+0.3)return;pulse(l,((t-l.t0-l.dur)/l.per+l.ph)%1,ICE,2.5,0.7);});
+    ctx.restore();
+    // points lumineux
+    nodes.forEach(function(n,i){
+      var p=pr(t,n.ap,n.ap+0.6);if(p<=0)return;
+      var sc=eb(p),isHub=n===hub,r=(isHub?9:5.6)*sc,hr=(isHub?44:26)*sc;
+      var g=ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,hr);
+      g.addColorStop(0,'rgba('+GOLD+',.65)');g.addColorStop(0.4,'rgba('+GOLD+',.18)');g.addColorStop(1,'rgba('+GOLD+',0)');
+      ctx.fillStyle=g;ctx.beginPath();ctx.arc(n.x,n.y,hr,0,6.2832);ctx.fill();
+      if(t>n.ap+0.6){
+        var ph=((t-n.ap)/2.6+i*0.137)%1,rr=(isHub?10:6)+ph*(isHub?46:28);
+        ctx.strokeStyle='rgba('+GOLD+','+(0.75*(1-ph))+')';ctx.lineWidth=isHub?2.4:1.6;ctx.beginPath();ctx.arc(n.x,n.y,rr,0,6.2832);ctx.stroke();
+      }
+      ctx.save();ctx.shadowColor='rgba('+GOLD+',1)';ctx.shadowBlur=14*S;
+      ctx.fillStyle='#fff6d6';ctx.beginPath();ctx.arc(n.x,n.y,r,0,6.2832);ctx.fill();
+      ctx.fillStyle='rgb('+GOLD+')';ctx.beginPath();ctx.arc(n.x,n.y,r*0.62,0,6.2832);ctx.fill();ctx.restore();
+    });
+  }
+  var reduce=false;
+  try{reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(e){}
+  if(reduce){draw(9);window.addEventListener('resize',function(){draw(9);});return;}
+  var start=null,raf=0,visible=true;
+  function frame(ts){
+    if(!visible||document.hidden){raf=0;return;}
+    if(start===null)start=ts;
+    draw((ts-start)/1000);
+    raf=requestAnimationFrame(frame);
+  }
+  function play(){if(!raf)raf=requestAnimationFrame(frame);}
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){visible=es[es.length-1].isIntersecting;if(visible)play();}).observe(cv);
+  }
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)play();});
+  play();
+})();
+
 buildLangBar();applyLang();
 
 })();
 </script>
 
+<script>if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostname==='localhost'||location.hostname==='127.0.0.1')){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});}</script>
 </body>
 </html>
