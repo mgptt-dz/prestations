@@ -385,7 +385,7 @@ function da(n){return nb(n)+' DA';}
 function pc(n){return n+' %';}
 
 /* Source : statut de la MGPTT, version 2026, fichier « final 011026 » (art. 44 à 46, régime général). Pièces à fournir : guide des procédures ; justificatifs du statut ajoutés. */
-var OPT_DOSSIER=['Ordonnance avec prescription médicale du médecin ophtalmologue, dûment complétée par l’opticien','Facture originale de l’opticien',P];
+var OPT_DOSSIER=['Ordonnance originale du médecin ophtalmologue, dûment complétée par l’opticien','Facture originale de l’opticien',P];
 var RAD_DOSSIER=['Compte rendu de l’acte de radiologie','Facture originale',P];
 var RAD_DOSSIER_SPEC=['Prescription médicale du médecin spécialiste','Compte rendu de l’acte de radiologie','Facture originale',P];
 var FREQ_VERRES='1 fois par an, sauf changement de correction prescrit par l’ophtalmologue';
@@ -412,7 +412,7 @@ var ITEMS=[
   {id:'pharma',cat:'soins',name:'Produits pharmaceutiques remboursables par la CNAS',keys:'medicaments pharmacie',short:pc(20),
    detail:'20 % du montant global du volet CNAS. Le total remboursé par la sécurité sociale et la MGPTT ne peut pas dépasser 100 % du tarif de référence.',validity:'3 ans',freq:'Régulier',
    note:'La MGPTT ne prend pas en charge les produits pharmaceutiques achetés à l’étranger.',pieces:['Volet décompte CNAS (80 %)',P,CHEQUE]},
-  {id:'indemnite',cat:'soins',name:'Indemnité journalière',keys:'arret maladie salaire',short:pc(25),
+  {id:'indemnite',cat:'soins',only:'actif',name:'Indemnité journalière',keys:'arret maladie salaire',short:pc(25),
    detail:'25 % du salaire soumis à cotisation de sécurité sociale, lorsque la sécurité sociale ne l’accorde qu’au taux de 50 %.',
    pieces:['Volet décompte CNAS',P,CHEQUE]},
   {id:'chirurgie',cat:'soins',name:'Chirurgie et chirurgie des yeux',keys:'operation intervention ophtalmologique hernie',short:pc(50),meta:'Plafond 50 000 DA par an',
@@ -427,7 +427,7 @@ var ITEMS=[
    pieces:['Photocopie des résultats des analyses','Facture ou quittance originale de paiement des analyses',P,CHEQUE]},
   {id:'reeducation',cat:'soins',name:'Rééducation fonctionnelle',keys:'kinesitherapie seances',short:'500 DA/séance',meta:'Plafond 40 séances',
    detail:'500 DA par séance de rééducation, dans la limite de 40 séances.',validity:'3 ans',freq:'1 fois par an',note:NOTE_ETRANGER,
-   pieces:['Prescription médicale du médecin spécialiste, précisant le nombre de séances','Photocopie du compte rendu, ou facture bien détaillée',P,CHEQUE]},
+   pieces:['Prescription médicale du médecin spécialiste, précisant le nombre de séances','Facture originale bien détaillée ou photocopie du compte rendu',P,CHEQUE]},
 
   optique('monture','Montures',5000,'','1 fois tous les 2 ans'),
   optique('verre-4','Verre de moins de 4 dioptries',700,'verres',FREQ_VERRES),
@@ -527,14 +527,14 @@ var PIECE_AR={
   'Chèque barré':'شيك مشطوب',
   'Feuille de maladie':'ورقة المرض (Feuille de maladie)',
   'Photocopie du compte rendu':'نسخة من التقرير الطبي',
-  'Photocopie du compte rendu, ou facture bien détaillée':'نسخة من التقرير الطبي، أو فاتورة مفصّلة',
+  'Facture originale bien détaillée ou photocopie du compte rendu':'فاتورة أصلية مفصّلة أو نسخة من التقرير الطبي',
   'Facture originale de l’acte chirurgical effectué':'الفاتورة الأصلية للعملية الجراحية المنجزة',
   'Photocopie du compte rendu de la chirurgie':'نسخة من التقرير الطبي للعملية الجراحية',
   'Facture originale de l’acte de chirurgie dentaire effectué':'الفاتورة الأصلية لعملية جراحة الأسنان المنجزة',
   'Photocopie des résultats des analyses':'نسخة من نتائج التحاليل',
   'Facture ou quittance originale de paiement des analyses':'الفاتورة أو وصل الدفع الأصلي للتحاليل',
   'Prescription médicale du médecin spécialiste, précisant le nombre de séances':'وصفة طبية من الطبيب المختص تحدد عدد الجلسات',
-  'Ordonnance avec prescription médicale du médecin ophtalmologue, dûment complétée par l’opticien':'وصفة طبية من طبيب العيون، مستوفاة من طرف بائع النظارات (Opticien)',
+  'Ordonnance originale du médecin ophtalmologue, dûment complétée par l’opticien':'الوصفة الطبية الأصلية من طبيب العيون، مستوفاة من طرف بائع النظارات (Opticien)',
   'Facture originale de l’opticien':'الفاتورة الأصلية من بائع النظارات (Opticien)',
   'Prescription médicale du médecin spécialiste':'وصفة طبية من الطبيب المختص',
   'Compte rendu de l’acte de radiologie':'تقرير فحص الأشعة',
@@ -1018,7 +1018,7 @@ function rowHtml(it){
 function render(){
   var terms=norm(state.q).split(/\s+/).filter(Boolean);
   var found=ITEMS.filter(function(it){
-    return (state.cat==='all'||it.cat===state.cat)&&terms.every(function(x){return it.hay.indexOf(x)!==-1;});
+    return (!it.only||it.only===state.profil)&&(state.cat==='all'||it.cat===state.cat)&&terms.every(function(x){return it.hay.indexOf(x)!==-1;});
   });
   els.count.textContent=t('count')(found.length);
   if(!found.length){

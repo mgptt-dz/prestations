@@ -1,5 +1,5 @@
 /* Service worker – Prestations MGPTT. Page : réseau d'abord (contenu toujours à jour), cache en secours hors connexion. */
-const VERSION = '20261105081624';
+const VERSION = '20261111051705';
 const PREFIX = 'mgptt-prestations-';
 const CACHE = PREFIX + VERSION;
 const CORE = ['./', './index.html', './manifest.json', './icons/icon-192.png', './icons/icon-512.png',
