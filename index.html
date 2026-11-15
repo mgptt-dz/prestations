@@ -259,6 +259,7 @@ main.wrap{padding-block:18px 8px}
 .prev figcaption{font-size:.8rem;color:var(--muted);text-align:center}
 .form-msg.err{color:var(--danger)}
 .req{color:var(--danger);font-style:normal}
+[aria-invalid="true"]{outline:2px solid var(--danger);outline-offset:1px;border-color:var(--danger)}
 .fill input[type=text].hp{position:absolute;width:1px;min-height:0;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0,0,0,0);opacity:0;pointer-events:none}
 .up-files{list-style:none;margin:0;padding:0;display:grid;gap:6px}
 .up-files li{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;min-width:0}
@@ -886,8 +887,8 @@ var T={
     count:function(n){return n+(n>1?' prestations':' prestation');},
     forms:{title:'Adhérer à la MGPTT',intro:'Choisissez votre situation, téléchargez le bulletin d’adhésion correspondant, imprimez-le puis remplissez-le (formulaire bilingue, français et arabe). Joignez-y les pièces indiquées. Vous pouvez ensuite l’envoyer par e-mail (voir plus bas) ou le déposer dans un centre payeur. Pas d’imprimante ? Remplissez-le directement sur votre téléphone (voir plus bas).',piecesTitle:'Pièces à fournir',
       pieces:{
-        actif:['Bulletin d’adhésion rempli','Une fiche de paie ou un chèque barré'],
-        retraite:['Bulletin d’adhésion rempli','Attestation de revenu CNR','Photocopie de la carte Chifa','Chèque barré','Photocopie de la décision de retraite']},
+        actif:['Bulletin d’adhésion rempli','Une fiche de paie','Un chèque barré (facultatif)'],
+        retraite:['Bulletin d’adhésion rempli','Attestation de revenu CNR','Photocopie de la carte Chifa','Chèque barré (facultatif)','Photocopie de la décision de retraite']},
       doc:'Bulletin d’adhésion',page:function(n){return n+(n>1?' pages':' page');},size:function(k){return k+' Ko';},dl:'Télécharger le bulletin',err:'Le téléchargement n’a pas abouti. Veuillez réessayer.',
       send:{
         title:'Envoyer votre dossier d’adhésion par e-mail',
@@ -975,8 +976,8 @@ var T={
     count:function(n){return 'عدد الأداءات: '+n;},
     forms:{title:'الانخراط في التعاضدية',intro:'اختر وضعيتك، ثم حمّل استمارة الانخراط الخاصة بها واطبعها واملأها (الاستمارة ثنائية اللغة: العربية والفرنسية)، وأرفقها بالوثائق المبيّنة. ويمكنك بعد ذلك إرسالها عبر البريد الإلكتروني (انظر أسفله) أو إيداعها لدى مركز الدفع. لا تملك طابعة؟ يمكنك ملؤها مباشرة على هاتفك (انظر أسفله).',piecesTitle:'الوثائق المطلوبة',
       pieces:{
-        actif:['استمارة الانخراط مملوءة','كشف الراتب أو شيك مشطوب'],
-        retraite:['استمارة الانخراط مملوءة','شهادة الدخل (CNR – الصندوق الوطني للتقاعد)','نسخة من بطاقة الشفاء','شيك مشطوب','نسخة من مقرر الإحالة على التقاعد']},
+        actif:['استمارة الانخراط مملوءة','كشف الراتب','شيك مشطوب (اختياري)'],
+        retraite:['استمارة الانخراط مملوءة','شهادة الدخل (CNR – الصندوق الوطني للتقاعد)','نسخة من بطاقة الشفاء','شيك مشطوب (اختياري)','نسخة من مقرر الإحالة على التقاعد']},
       doc:'استمارة الانخراط',page:function(n){return n===1?'صفحة واحدة':(n===2?'صفحتان':n+' صفحات');},size:function(k){return k+' ك.ب';},dl:'تحميل الاستمارة',err:'تعذّر التحميل. يُرجى المحاولة مرة أخرى.',
       send:{
         title:'إرسال ملف الانخراط عبر البريد الإلكتروني',
@@ -1320,7 +1321,7 @@ fr:{
   pieceAdd:'Ajouter des photos',pieceN:function(n){return n+(n>1?' photos':' photo');},
   attest:'J’atteste la sincérité des renseignements portés sur ce bulletin et je reconnais avoir lu la déclaration imprimée en bas du bulletin.',
   gen:'Générer mon dossier PDF',busy:'Préparation du PDF…',
-  missing:function(l){return 'À compléter : '+l.join(', ')+'.';},sigMissing:'votre signature',attestMissing:'la case d’attestation',
+  missing:function(l){return 'À compléter : '+l.join(', ')+'.';},invalid:function(l){return 'À corriger : '+l.join(', ')+'.';},reqNote:'Tous les champs marqués d’un * sont obligatoires. Si une information ne vous concerne pas, écrivez « néant » (ou « 0 » pour un nombre).',sigMissing:'votre signature',attestMissing:'la case d’attestation',
   prev:'Aperçu : vérifiez chaque page. Si quelque chose est faux, corrigez le formulaire puis régénérez le PDF.',
   pageN:function(i,n){return 'Page '+i+' sur '+n;},
   ready:'Votre dossier est prêt',info:function(p,s){return p+(p>1?' pages':' page')+' · '+s;},
@@ -1361,7 +1362,7 @@ ar:{
   pieceAdd:'إضافة صور',pieceN:function(n){return n===1?'صورة واحدة':(n===2?'صورتان':n+' صور');},
   attest:'أشهد بصحة المعلومات الواردة في هذه الاستمارة، وأقرّ بأنني قرأت التصريح المطبوع أسفل الاستمارة.',
   gen:'إنشاء ملف PDF الخاص بي',busy:'جارٍ إعداد الملف…',
-  missing:function(l){return 'يرجى استكمال: '+l.join('، ')+'.';},sigMissing:'الإمضاء',attestMissing:'خانة الإشهاد',
+  missing:function(l){return 'يرجى استكمال: '+l.join('، ')+'.';},invalid:function(l){return 'يرجى تصحيح: '+l.join('، ')+'.';},reqNote:'جميع الحقول المعلَّمة بنجمة (*) إلزامية. وإذا كانت معلومة لا تعنيك فاكتب «لا شيء» (أو «0» إذا كان الحقل رقمًا).',sigMissing:'الإمضاء',attestMissing:'خانة الإشهاد',
   prev:'معاينة: تحقق من كل صفحة. إذا وجدت خطأ فصحّح النموذج ثم أعد إنشاء الملف.',
   pageN:function(i,n){return 'الصفحة '+i+' من '+n;},
   ready:'ملفك جاهز',info:function(p,s){return (p===1?'صفحة واحدة':(p===2?'صفحتان':p+' صفحات'))+' · '+s;},
@@ -1385,28 +1386,29 @@ if(!FILL.v.date)FILL.v.date=todayFr();
 var FILL_YOU=[
   {id:'regime',t:'select',p:['retraite'],req:1},
   {id:'nom',t:'text',req:1},
-  {id:'nomlat',t:'text',p:['retraite']},
-  {id:'nomjf',t:'text',p:['actif']},
-  {id:'epoux',t:'text',p:['retraite']},
-  {id:'dn',t:'text',req:1,im:'numeric'},
+  {id:'nomlat',t:'text',p:['retraite']},            /* obligatoire seulement si le nom est en arabe (voir fillProblems) */
+  {id:'nomjf',t:'text',p:['actif']},                /* concerne uniquement les femmes : facultatif */
+  {id:'epoux',t:'text',p:['retraite']},             /* « le cas échéant » : facultatif */
+  {id:'dn',t:'text',req:1,im:'numeric',kind:'date'},
   {id:'ln',t:'text',req:1},
-  {id:'pere',t:'text',p:['retraite']},
-  {id:'mere',t:'text',p:['retraite']},
-  {id:'famille',t:'select'},
-  {id:'nbenfants',t:'text',im:'numeric'},
+  {id:'pere',t:'text',p:['retraite'],req:1},
+  {id:'mere',t:'text',p:['retraite'],req:1},
+  {id:'famille',t:'select',req:1},
+  {id:'nbenfants',t:'text',im:'numeric',req:1,kind:'num'},
   {id:'adresse',t:'text',req:1},
-  {id:'pension',t:'text',p:['retraite']},
-  {id:'employeur',t:'text'},
-  {id:'recrut',t:'text',im:'numeric'},
-  {id:'poste',t:'text'},
-  {id:'matricule',t:'text',p:['actif']},
-  {id:'nss',t:'text',im:'numeric'},
-  {id:'ccp',t:'text',im:'numeric'}
+  {id:'pension',t:'text',p:['retraite'],req:1},
+  {id:'employeur',t:'text',req:1},
+  {id:'recrut',t:'text',im:'numeric',req:1,kind:'date'},
+  {id:'poste',t:'text',req:1},
+  {id:'matricule',t:'text',p:['actif'],req:1},
+  {id:'nss',t:'text',im:'numeric',req:1},
+  {id:'ccp',t:'text',im:'numeric',req:1}
 ];
+/* Bloc conjoint : si « Pas de conjoint à déclarer » est laissé, rien n’est demandé ; dès qu’un conjoint est déclaré, tous les champs affichés (when) deviennent obligatoires. */
 var FILL_SPOUSE=[
   {id:'c_type',t:'select'},
   {id:'c_nom',t:'text',when:'c_type:*'},
-  {id:'c_dn',t:'text',when:'c_type:*',im:'numeric'},
+  {id:'c_dn',t:'text',when:'c_type:*',im:'numeric',kind:'date'},
   {id:'c_ln',t:'text',when:'c_type:*'},
   {id:'c_nss',t:'text',when:'c_type:oui',im:'numeric'},
   {id:'c_emp',t:'text',when:'c_type:oui'},
@@ -1414,7 +1416,7 @@ var FILL_SPOUSE=[
   {id:'c_adh',t:'select',p:['retraite'],when:'c_type:*'},
   {id:'c_mat',t:'text',p:['retraite'],when:'c_adh:oui',im:'numeric'}
 ];
-var FILL_SIGN=[{id:'lieu',t:'text'},{id:'date',t:'text',im:'numeric'}];
+var FILL_SIGN=[{id:'lieu',t:'text',req:1},{id:'date',t:'text',req:1,im:'numeric',kind:'date'}];
 function fOn(f,p){return !f.p||f.p.indexOf(p)>-1;}
 
 /* Géométrie des bulletins, en pixels du scan d’origine (1654 × 2338). g = [x début, x fin, y gauche, y droite] de la ligne pointillée. */
@@ -1582,7 +1584,7 @@ function makePdf(pages){
 function fillProfil(){return state.profil;}
 function fOpts(id){var F=ft();return id==='c_employe'||id==='c_adh'?F.o.yn:F.o[id];}
 function fieldHtml(f){
-  var F=ft(),id=f.id,val=FILL.v[id]||'',h='<div class="fl"'+(f.when?' data-when="'+f.when+'"':'')+'><label for="f-'+id+'">'+esc(F.f[id])+(f.req?' <i aria-hidden="true">*</i>':'')+'</label>';
+  var F=ft(),id=f.id,val=FILL.v[id]||'',h='<div class="fl"'+(f.when?' data-when="'+f.when+'"':'')+'><label for="f-'+id+'">'+esc(F.f[id])+((f.req||f.when)?' <i aria-hidden="true">*</i>':'')+'</label>';
   if(f.t==='select'){
     var op=fOpts(id),ph=(id==='c_type')?F.noSpouse:F.pick;
     h+='<select id="f-'+id+'" data-f="'+id+'"><option value="">'+esc(ph)+'</option>'+Object.keys(op).map(function(k){return '<option value="'+k+'"'+(val===k?' selected':'')+'>'+esc(op[k])+'</option>';}).join('')+'</select>';
@@ -1603,7 +1605,7 @@ function slotsHtml(){
   var F=ft(),p=fillProfil(),pcs=(t('forms').pieces[p]||[]).slice(1);
   return pcs.map(function(lab,i){
     var key=p+'_'+i,n=(FILL.pieces[key]||[]).length;
-    return '<div class="slot"><div class="slot-h"><b>'+esc(lab)+'</b></div><div class="slot-b"><input type="file" accept="image/*" multiple hidden id="sl-'+key+'" data-slot="'+key+'">'
+    return '<div class="slot"><div class="slot-h"><b>'+esc(lab)+'</b>'+(UPLOAD_URL&&upReqKeys()['piece'+(i+1)]?' <i aria-hidden="true" class="req">*</i>':'')+'</div><div class="slot-b"><input type="file" accept="image/*" multiple hidden id="sl-'+key+'" data-slot="'+key+'">'
       +'<label class="dl-alt sm" for="sl-'+key+'" tabindex="0" role="button">'+esc(F.pieceAdd)+'</label>'
       +'<span class="slot-n" id="sn-'+key+'">'+(n?esc(F.pieceN(n)):'')+'</span>'+(n?' <button type="button" class="lnk" data-clear="'+key+'">'+esc(F.remove)+'</button>':'')+'</div></div>';
   }).join('');
@@ -1613,7 +1615,7 @@ function renderFill(){
   var F=ft(),p=fillProfil(),isR=p==='retraite';
   var html='<section class="fill" id="fill" aria-labelledby="fill-title"><h3 id="fill-title">'+esc(F.title)+'</h3><p>'+esc(F.intro)+'</p>'
     +'<div><button type="button" class="dl fill-toggle" id="fill-toggle" aria-expanded="'+FILL.open+'" aria-controls="fill-form"><span>'+esc(FILL.open?F.hide:F.start)+'</span></button></div>'
-    +'<div class="fill-form" id="fill-form"'+(FILL.open?'':' hidden')+'><p class="fill-prof">'+esc(F.bulletin(profLabel(p)))+'</p>'
+    +'<div class="fill-form" id="fill-form"'+(FILL.open?'':' hidden')+'><p class="fill-prof">'+esc(F.bulletin(profLabel(p)))+'</p><p class="hint">'+esc(F.reqNote)+'</p>'
     +'<fieldset><legend>'+esc(F.s.you)+'</legend>'+FILL_YOU.filter(function(f){return fOn(f,p);}).map(fieldHtml).join('')+'</fieldset>'
     +'<fieldset><legend>'+esc(F.s.spouse)+'</legend><p class="hint">'+esc(F.spouseHelp)+'</p>'+FILL_SPOUSE.filter(function(f){return fOn(f,p);}).map(fieldHtml).join('')+'</fieldset>'
     +(isR?'<fieldset><legend>'+esc(F.s.kids)+'</legend>'+rowsHtml(FILL.kids,['n','d'],'kid',F.kid)
@@ -1655,7 +1657,7 @@ function initSig(){
   var c=document.getElementById('fill-sig');if(!c)return;
   var cur=null;
   function pt(e){var r=c.getBoundingClientRect();return [Math.min(1,Math.max(0,(e.clientX-r.left)/r.width)),Math.min(1,Math.max(0,(e.clientY-r.top)/r.height))];}
-  c.addEventListener('pointerdown',function(e){e.preventDefault();try{c.setPointerCapture(e.pointerId);}catch(err){}cur=[pt(e)];FILL.sig.push(cur);sigRedraw();});
+  c.addEventListener('pointerdown',function(e){e.preventDefault();c.removeAttribute('aria-invalid');try{c.setPointerCapture(e.pointerId);}catch(err){}cur=[pt(e)];FILL.sig.push(cur);sigRedraw();});
   c.addEventListener('pointermove',function(e){if(!cur)return;e.preventDefault();cur.push(pt(e));sigRedraw();});
   function end(){cur=null;}
   c.addEventListener('pointerup',end);c.addEventListener('pointercancel',end);c.addEventListener('pointerleave',end);
@@ -1663,25 +1665,54 @@ function initSig(){
 }
 window.addEventListener('resize',sigRedraw);
 
-function fillMissing(){
-  var F=ft(),p=fillProfil(),m=[];
-  FILL_YOU.concat(FILL_SPOUSE).forEach(function(f){if(f.req&&fOn(f,p)&&!String(FILL.v[f.id]||'').trim())m.push(F.f[f.id]);});
-  if(p==='retraite'&&hasAr(FILL.v.nom)&&!String(FILL.v.nomlat||'').trim())m.push(F.f.nomlat);
-  if(!FILL.sig.length)m.push(F.sigMissing);
-  if(!FILL.v.attest)m.push(F.attestMissing);
-  return m;
+/* Contrôle du bulletin : tout champ applicable est obligatoire (sauf nom de jeune fille, nom de l’époux, et le bloc conjoint si aucun conjoint n’est déclaré) ; les dates et nombres doivent être valides. */
+function parseFrDate(v){var m=/^(\d{2})\/(\d{2})\/(\d{4})$/.exec(String(v||'').trim());if(!m)return null;var d=+m[1],mo=+m[2],y=+m[3],dt=new Date(y,mo-1,d);if(y<1900||dt.getFullYear()!==y||dt.getMonth()!==mo-1||dt.getDate()!==d)return null;return dt;}
+function fWhenOk(f){if(!f.when)return true;var a=f.when.split(':'),v=FILL.v[a[0]]||'';return a[1]==='*'?!!v:v===a[1];}
+function fillProblems(){
+  var F=ft(),p=fillProfil(),miss=[],bad=[],ids=[],now=new Date();
+  function add(list,label,id){list.push(label);ids.push(id);}
+  FILL_YOU.concat(FILL_SPOUSE,FILL_SIGN).forEach(function(f){
+    if(!fOn(f,p)||!fWhenOk(f))return;
+    var v=String(FILL.v[f.id]||'').trim(),need=!!(f.req||f.when);
+    if(f.id==='nomlat')need=hasAr(FILL.v.nom);
+    if(!v){if(need)add(miss,F.f[f.id],'f-'+f.id);return;}
+    if(f.kind==='date'){var d=parseFrDate(v);if(!d||d>now)add(bad,F.f[f.id],'f-'+f.id);}
+    else if(f.kind==='num'&&!/^\d{1,2}$/.test(v))add(bad,F.f[f.id],'f-'+f.id);
+  });
+  if(p==='retraite'){
+    var kidsOk=0,anyPartial=false;
+    FILL.kids.forEach(function(r,i){var n=String(r.n||'').trim(),d=String(r.d||'').trim();
+      if(!n&&!d)return;
+      if(!n||!d){anyPartial=true;add(bad,F.kid(i+1),'kid'+i+(n?'d':'n'));}else kidsOk++;});
+    if((parseInt(FILL.v.nbenfants,10)||0)>0&&!kidsOk&&!anyPartial)add(miss,F.s.kids,'kid0n');
+    FILL.others.forEach(function(r,i){var n=String(r.n||'').trim(),d=String(r.d||'').trim(),l=String(r.r||'').trim();
+      if(!n&&!d&&!l&&!String(r.o||'').trim())return;
+      if(!n||!d||!l)add(bad,F.person(i+1),'oth'+i+(!n?'n':(!d?'d':'r')));});
+  }
+  if(!FILL.sig.length)add(miss,F.sigMissing,'fill-sig');
+  if(!FILL.v.attest)add(miss,F.attestMissing,'f-attest');
+  return {miss:miss,bad:bad,ids:ids};
 }
+function markInvalid(ids){
+  var first=null;
+  ids.forEach(function(id){var el=document.getElementById(id);if(!el)return;el.setAttribute('aria-invalid','true');
+    if(!first||el.getBoundingClientRect().top<first.getBoundingClientRect().top)first=el;});
+  if(first&&first.scrollIntoView)first.scrollIntoView({behavior:'smooth',block:'center'});
+}
+['input','change'].forEach(function(ev){document.addEventListener(ev,function(e){var n=e.target;if(n&&n.getAttribute&&n.getAttribute('aria-invalid')==='true')n.removeAttribute('aria-invalid');});});
+/* Emplacements de pièces dont une photo a été ajoutée au PDF (ils comptent comme fournis au dépôt) */
+function fillCov(p,pcs){var c={};pcs.forEach(function(lab,i){if((FILL.pieces[p+'_'+i]||[]).length)c['piece'+(i+1)]=true;});return c;}
 function fillBusy(on){FILL.busy=on;var b=document.getElementById('fill-go'),F=ft();if(b){b.disabled=on;b.querySelector('span').textContent=on?F.busy:F.gen;}}
 function fillGenerate(){
-  var F=ft(),msg=document.getElementById('fill-msg'),p=fillProfil(),miss=fillMissing();
+  var F=ft(),msg=document.getElementById('fill-msg'),p=fillProfil(),pr=fillProblems();
   if(FILL.busy)return;
-  if(miss.length){msg.textContent=F.missing(miss);msg.classList.add('err');return;}
+  if(pr.miss.length||pr.bad.length){msg.textContent=[pr.miss.length?F.missing(pr.miss):'',pr.bad.length?F.invalid(pr.bad):''].join(' ').trim();msg.classList.add('err');markInvalid(pr.ids);return;}
   msg.textContent='';msg.classList.remove('err');fillBusy(true);
   var canv=[],pcs=(t('forms').pieces[p]||[]).slice(1),jobs=[],seq=0;
   FILL.urls.forEach(function(u){try{URL.revokeObjectURL(u);}catch(err){}});FILL.urls=[];
   Promise.all(FILL_BG[p].map(loadSrc)).then(function(imgs){
     imgs.forEach(function(im,i){canv.push(drawBulletinPage(p,i,im));});
-    pcs.forEach(function(lab,i){(FILL.pieces[p+'_'+i]||[]).forEach(function(f){jobs.push({f:f,lab:lab});});});
+    pcs.forEach(function(lab,i){(FILL.pieces[p+'_'+i]||[]).forEach(function(f){jobs.push({f:f,lab:lab.replace(/\s*\((facultatif|اختياري)\)\s*$/,'')});});});
     return jobs.reduce(function(chain,j){
       return chain.then(function(){
         return loadFileImg(j.f).then(function(r){seq++;canv.push(drawPiecePage(r.img,F.pieceHead(seq,j.lab)));URL.revokeObjectURL(r.url);});
@@ -1689,7 +1720,7 @@ function fillGenerate(){
     },Promise.resolve());
   }).then(function(){return Promise.all(canv.map(canvasJpeg));}).then(function(jp){
     var blob=makePdf(jp),first=(latinName().split(' ')[0]||'').slice(0,20),name=F.fname+'_'+(first||todayFr().replace(/\//g,'-'))+'.pdf';
-    FILL.pdf={profil:p,extra:jobs.length,blob:blob,name:name,pages:jp.length,previews:jp.map(function(j){var u=URL.createObjectURL(j.blob);FILL.urls.push(u);return u;})};
+    FILL.pdf={profil:p,extra:jobs.length,cov:fillCov(p,pcs),blob:blob,name:name,pages:jp.length,previews:jp.map(function(j){var u=URL.createObjectURL(j.blob);FILL.urls.push(u);return u;})};
     fillBusy(false);showResult();if(typeof upRefreshFiles==='function')upRefreshFiles();
     var o=document.getElementById('fill-out');if(o&&o.scrollIntoView)o.scrollIntoView({behavior:'smooth',block:'start'});
   }).catch(function(err){fillBusy(false);msg.textContent=F.err;msg.classList.add('err');try{console.error(err);}catch(e2){}});
@@ -1761,10 +1792,12 @@ document.addEventListener('keydown',function(e){
 if(UPLOAD_URL){
   T.fr.forms.intro='Choisissez votre situation, téléchargez le bulletin d’adhésion correspondant, imprimez-le puis remplissez-le (formulaire bilingue, français et arabe). Joignez-y les pièces indiquées. Vous pouvez ensuite l’envoyer en ligne depuis cet outil, après l’avoir scanné ou photographié (voir plus bas), ou le déposer dans un centre payeur. Pas d’imprimante ? Remplissez-le directement sur votre téléphone (voir plus bas).';
   T.ar.forms.intro='اختر وضعيتك، ثم حمّل استمارة الانخراط الخاصة بها واطبعها واملأها (الاستمارة ثنائية اللغة: العربية والفرنسية)، وأرفقها بالوثائق المبيّنة. ويمكنك بعد ذلك إرسالها عبر الإنترنت من هذه الأداة بعد مسحها ضوئيًا أو تصويرها (انظر أسفله)، أو إيداعها لدى مركز الدفع. لا تملك طابعة؟ يمكنك ملؤها مباشرة على هاتفك (انظر أسفله).';
-  FILLT.fr.piecesHelp='Facultatif. Photographiez chaque pièce bien à plat et bien éclairée (ou choisissez une image de votre galerie) : elle sera ajoutée à la suite du bulletin, dans un seul fichier PDF. Une pièce déjà en PDF ? Ajoutez-la plutôt dans « Déposer mon dossier en ligne », plus bas.';
-  FILLT.ar.piecesHelp='اختياري. صوّر كل وثيقة وهي مسطّحة وجيدة الإضاءة (أو اختر صورة من معرض هاتفك): ستُضاف بعد الاستمارة في ملف PDF واحد. وثيقة موجودة أصلًا بصيغة PDF؟ أضفها بدلًا من ذلك في «إيداع ملفي عبر الإنترنت» أسفله.';
-  FILLT.fr.next='Étape suivante : descendez jusqu’à « Déposer mon dossier en ligne ». Ce PDF y est déjà prêt ; ajoutez vos autres pièces s’il y en a, puis envoyez.';
-  FILLT.ar.next='الخطوة التالية: انزل إلى «إيداع ملفي عبر الإنترنت». ملف PDF جاهز فيه أصلًا؛ أضف وثائقك الأخرى إن وُجدت ثم أرسل.';
+  FILLT.fr.piecesHelp='Vous pouvez joindre ici vos pièces : photographiez chacune bien à plat et bien éclairée (ou choisissez une image de votre galerie) ; elles seront ajoutées à la suite du bulletin, dans un seul fichier PDF. Les pièces marquées d’un * sont obligatoires : joignez-les ici ou dans « Déposer mon dossier en ligne », plus bas (une pièce déjà en PDF s’ajoute là-bas).';
+  FILLT.fr.intro='Remplissez le bulletin sur votre téléphone, signez avec le doigt et obtenez un fichier PDF prêt à envoyer. Vos informations restent sur votre appareil tant que vous n’envoyez pas votre dossier.';
+  FILLT.ar.intro='املأ الاستمارة على هاتفك ووقّعها بإصبعك لتحصل على ملف PDF جاهز للإرسال. تبقى معلوماتك على جهازك ما دمت لم ترسل ملفك.';
+  FILLT.ar.piecesHelp='يمكنك إرفاق وثائقك هنا: صوّر كل وثيقة وهي مسطّحة وجيدة الإضاءة (أو اختر صورة من معرض هاتفك)، وستُضاف بعد الاستمارة في ملف PDF واحد. الوثائق المعلَّمة بنجمة (*) إلزامية: أرفقها هنا أو في «إيداع ملفي عبر الإنترنت» أسفله (والوثيقة الموجودة أصلًا بصيغة PDF تُضاف هناك).';
+  FILLT.fr.next='Étape suivante : descendez jusqu’à « Déposer mon dossier en ligne ». Ce PDF y est déjà prêt ; ajoutez les pièces obligatoires qui manquent, puis envoyez.';
+  FILLT.ar.next='الخطوة التالية: انزل إلى «إيداع ملفي عبر الإنترنت». ملف PDF جاهز فيه أصلًا؛ أضف الوثائق الإلزامية الناقصة ثم أرسل.';
   FILLT.fr.big='Attention : le fichier dépasse 10 Mo et risque d’être refusé à l’envoi. Retirez des photos du bulletin et ajoutez-les plutôt dans « Déposer mon dossier en ligne ».';
   FILLT.ar.big='تنبيه: حجم الملف يتجاوز 10 ميغابايت وقد يُرفض عند الإرسال. احذف بعض الصور من الاستمارة وأضفها بدلًا من ذلك في «إيداع ملفي عبر الإنترنت».';
 }
@@ -1775,14 +1808,17 @@ fr:{
   title:'Déposer mon dossier en ligne',
   intro:'Envoyez votre dossier directement depuis cet outil, sans écrire d’e-mail. Il est transmis au service des adhésions de la MGPTT.',
   s:{files:'Vos documents',contact:'Pour vous joindre',go:'Envoi'},
-  filesHelp:'Ajoutez un fichier PDF ou une photo (JPEG ou PNG) pour chaque document. Photographiez bien à plat, avec un texte lisible.',
+  filesHelp:'Ajoutez un fichier PDF ou une photo (JPEG ou PNG) pour chaque document. Les documents marqués d’un * sont obligatoires : sans eux, le dossier ne peut pas être envoyé. Photographiez bien à plat, avec un texte lisible.',
   req:'obligatoire',add:'Ajouter un fichier',remove:'Retirer',auto:'Dossier PDF préparé dans cet outil',
-  nom:'Nom et prénoms',tel:'Téléphone',mail:'E-mail (facultatif)',wilaya:'Wilaya (facultatif)',
+  nom:'Nom et prénoms',tel:'Téléphone',mail:'E-mail (facultatif)',wilaya:'Wilaya de résidence',
   consent:'J’accepte que la MGPTT utilise ces informations et ces documents pour traiter ma demande d’adhésion.',
   privacy:'Vos documents sont transmis par une connexion chiffrée (HTTPS) à la boîte des adhésions de la MGPTT, uniquement pour traiter votre demande.',
   send:'Envoyer mon dossier',sending:'Envoi en cours… ne fermez pas la page.',
   missingList:function(l){return 'À compléter : '+l.join(', ')+'.';},
-  noBulletin:'le bulletin d’adhésion',noName:'votre nom',noTel:'votre numéro de téléphone',noConsent:'la case d’accord',
+  noBulletin:'le bulletin d’adhésion',noName:'votre nom et prénoms (deux mots au moins)',noTel:'un numéro de téléphone valide (ex. 0550 12 34 56)',noWilaya:'votre wilaya',badMail:'une adresse e-mail valide',noConsent:'la case d’accord',noBconf:'la confirmation que le bulletin est rempli et signé',
+  missingPieces:function(l){return 'Pièces obligatoires manquantes : '+l.join(', ')+'.';},
+  bconf:'Je confirme que mon bulletin d’adhésion (scanné ou photographié) est entièrement rempli et signé.',
+  errMissing:'Le dossier est incomplet : vérifiez les pièces obligatoires et vos informations, puis réessayez.',
   notAdded:function(l){return 'Documents non ajoutés : '+l.join(', ')+'. Vous pourrez les envoyer plus tard.';},
   total:function(n,s){return n+(n>1?' fichiers':' fichier')+' · '+s;},
   errType:'Format non accepté : seuls les PDF et les photos (JPEG, PNG) sont acceptés.',errPdf:'Ce PDF dépasse 8 Mo. Réduisez sa taille ou ajoutez plutôt des photos de vos pages.',
@@ -1799,14 +1835,17 @@ ar:{
   title:'إيداع ملفي عبر الإنترنت',
   intro:'أرسل ملفك مباشرة من هذه الأداة دون كتابة رسالة إلكترونية. يصل الملف إلى مصلحة الانخراطات في التعاضدية.',
   s:{files:'وثائقك',contact:'للاتصال بك',go:'الإرسال'},
-  filesHelp:'أضف ملف PDF أو صورة (JPEG أو PNG) لكل وثيقة. صوّر الوثيقة وهي مسطّحة والكتابة مقروءة.',
+  filesHelp:'أضف ملف PDF أو صورة (JPEG أو PNG) لكل وثيقة. الوثائق المعلَّمة بنجمة (*) إلزامية، ولا يمكن إرسال الملف بدونها. صوّر الوثيقة وهي مسطّحة والكتابة مقروءة.',
   req:'إجباري',add:'إضافة ملف',remove:'حذف',auto:'ملف PDF الذي أعددته في هذه الأداة',
-  nom:'الاسم واللقب',tel:'رقم الهاتف',mail:'البريد الإلكتروني (اختياري)',wilaya:'الولاية (اختياري)',
+  nom:'الاسم واللقب',tel:'رقم الهاتف',mail:'البريد الإلكتروني (اختياري)',wilaya:'ولاية الإقامة',
   consent:'أوافق على أن تستعمل التعاضدية هذه المعلومات وهذه الوثائق لمعالجة طلب انخراطي.',
   privacy:'تُرسل وثائقك عبر اتصال مشفّر (HTTPS) إلى البريد الخاص بالانخراطات في التعاضدية، ولغرض معالجة طلبك فقط.',
   send:'إرسال ملفي',sending:'جارٍ الإرسال… لا تغلق الصفحة.',
   missingList:function(l){return 'يرجى استكمال: '+l.join('، ')+'.';},
-  noBulletin:'استمارة الانخراط',noName:'الاسم',noTel:'رقم الهاتف',noConsent:'خانة الموافقة',
+  noBulletin:'استمارة الانخراط',noName:'الاسم واللقب (كلمتان على الأقل)',noTel:'رقم هاتف صحيح (مثال: 0550 12 34 56)',noWilaya:'الولاية',badMail:'بريد إلكتروني صحيح',noConsent:'خانة الموافقة',noBconf:'تأكيد أن الاستمارة مملوءة وموقَّعة',
+  missingPieces:function(l){return 'وثائق إلزامية ناقصة: '+l.join('، ')+'.';},
+  bconf:'أؤكد أن استمارة الانخراط (الممسوحة ضوئيًا أو المصوَّرة) مملوءة بالكامل وموقَّعة.',
+  errMissing:'الملف غير مكتمل: تحقق من الوثائق الإلزامية ومن معلوماتك ثم أعد المحاولة.',
   notAdded:function(l){return 'وثائق لم تُضف: '+l.join('، ')+'. يمكنك إرسالها لاحقًا.';},
   total:function(n,s){return (n===1?'ملف واحد':(n===2?'ملفان':n+' ملفات'))+' · '+s;},
   errType:'صيغة غير مقبولة: يُقبل فقط ملف PDF والصور (JPEG وPNG).',errPdf:'حجم ملف PDF هذا يتجاوز 8 ميغابايت. قلّص حجمه أو أضف بدلًا منه صورًا لصفحاتك.',
@@ -1820,13 +1859,25 @@ ar:{
   titleAlt:'خيار آخر: إرسال الملف عبر البريد الإلكتروني'
 }};
 function ut(){return UPT[lang]||UPT.fr;}
-var UP={files:{},c:{},consent:false,noAuto:false,busy:false,done:null,msg:'',err:false,t0:Date.now(),pct:0};
+var UP={files:{},c:{},consent:false,bconf:false,noAuto:false,busy:false,done:null,msg:'',err:false,t0:Date.now(),pct:0};
 var UP_MAX_TOTAL=15*1024*1024,UP_MAX_PDF=8*1024*1024;
+/* Pièces obligatoires par situation. Chaque liste = « au moins un fichier parmi ces emplacements ».
+   Emplacements : bulletin, piece1, piece2… dans l’ordre des pièces à fournir (voir « pieces » dans T.fr.forms).
+   Actif : bulletin + fiche de paie (le chèque barré, piece2, est facultatif). Retraité : bulletin, attestation CNR, carte Chifa, décision de retraite (le chèque barré, piece3, est facultatif).
+   Le même tableau existe dans Code.gs (REQUIRED) : le serveur refuse aussi les dossiers incomplets. */
+var UP_REQUIRED={actif:[['bulletin'],['piece1']],retraite:[['bulletin'],['piece1'],['piece2'],['piece4']]};
+function upReqGroups(){return UP_REQUIRED[state.profil]||[['bulletin']];}
+function upReqKeys(){var o={};upReqGroups().forEach(function(g){g.forEach(function(k){o[k]=1;});});return o;}
 function upSlots(){
-  var p=state.profil,pcs=t('forms').pieces[p]||[];
-  return pcs.map(function(lab,i){return {key:i===0?'bulletin':'piece'+i,label:lab,req:i===0};});
+  var p=state.profil,pcs=t('forms').pieces[p]||[],rk=upReqKeys();
+  return pcs.map(function(lab,i){var key=i===0?'bulletin':'piece'+i;return {key:key,label:lab,req:!!rk[key]};});
 }
 function upAuto(){return (FILL&&FILL.pdf&&FILL.pdf.profil===state.profil&&!UP.noAuto)?FILL.pdf:null;}
+function upCovered(key){var a=upAuto();return !!(a&&a.cov&&a.cov[key]);}
+function upHas(key){return upList(key).length>0||upCovered(key);}
+function upNeedBconf(){var l=upList('bulletin');return l.length>0&&!upAuto();}
+function telOk(v){var d=String(v||'').replace(/[٠-٩]/g,function(c){return c.charCodeAt(0)-1632;}).replace(/[\s.\-()]/g,'').replace(/^(\+|00)213/,'0');return /^0\d{8,9}$/.test(d);}
+function mailOk(v){return /^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(String(v||'').trim());}
 function upList(key){
   var l=(UP.files[key]||[]).slice();
   if(key==='bulletin'){var a=upAuto();if(a)l.unshift({blob:a.blob,name:a.name,type:'application/pdf',size:a.blob.size,auto:true});}
@@ -1838,7 +1889,7 @@ function upFilesHtml(){
   var U=ut();
   return upSlots().map(function(sl){
     var l=upList(sl.key);
-    return '<div class="slot"><div class="slot-h"><b>'+esc(sl.label)+'</b>'+(sl.req?' <i aria-hidden="true" class="req">*</i>':'')+'</div>'
+    return '<div class="slot" id="upslot-'+sl.key+'"><div class="slot-h"><b>'+esc(sl.label)+'</b>'+(sl.req?' <i aria-hidden="true" class="req">*</i>':'')+'</div>'
       +(l.length?'<ul class="up-files">'+l.map(function(f,i){
           return '<li><span class="up-n">'+esc(f.auto?U.auto:f.name)+'</span> <span class="slot-n">'+esc(upSize(f.size))+'</span> <button type="button" class="lnk" data-up-rm="'+sl.key+':'+i+'">'+esc(U.remove)+'</button></li>';
         }).join('')+'</ul>':'')
@@ -1847,11 +1898,9 @@ function upFilesHtml(){
   }).join('');
 }
 function upInfoHtml(){
-  var U=ut(),tt=upTotal(),a=upAuto(),h='';
-  var covered=a&&FILL.pdf.extra>0;
-  var miss=upSlots().filter(function(sl){return !sl.req&&!upList(sl.key).length;}).map(function(sl){return sl.label;});
+  var U=ut(),tt=upTotal(),h='';
   h+='<p class="hint">'+esc(U.total(tt.n,upSize(tt.s)))+'</p>';
-  if(miss.length&&tt.n&&!covered)h+='<p class="note">'+esc(U.notAdded(miss))+'</p>';
+  if(upNeedBconf())h+='<label class="chk"><input type="checkbox" id="up-bconf"'+(UP.bconf?' checked':'')+'><span>'+esc(U.bconf)+'</span></label>';
   return h;
 }
 function upMsgHtml(){return UP.msg?'<p class="form-msg'+(UP.err?' err':'')+'" role="status" aria-live="polite">'+esc(UP.msg)+'</p>':'<p class="form-msg" role="status" aria-live="polite"></p>';}
@@ -1905,20 +1954,24 @@ function upPrepare(file){
 function upB64(blob){
   return new Promise(function(res,rej){var fr=new FileReader();fr.onload=function(){var s=String(fr.result);res(s.slice(s.indexOf(',')+1));};fr.onerror=function(){rej(new Error('read'));};fr.readAsDataURL(blob);});
 }
-function upMissing(){
-  var U=ut(),m=[];
-  if(!upList('bulletin').length)m.push(U.noBulletin);
-  if(!String(UP.c.nom!=null?UP.c.nom:((FILL&&FILL.v&&FILL.v.nom)||'')).trim())m.push(U.noName);
-  if(String(UP.c.tel||'').replace(/\D/g,'').length<8)m.push(U.noTel);
-  if(!UP.consent)m.push(U.noConsent);
-  return m;
+function upProblems(){
+  var U=ut(),m=[],ids=[],pcs=[],nom=String(UP.c.nom!=null?UP.c.nom:((FILL&&FILL.v&&FILL.v.nom)||'')).trim();
+  if(nom.split(/\s+/).filter(Boolean).length<2||!/[A-Za-z\u00C0-\u024F\u0600-\u06FF]/.test(nom)){m.push(U.noName);ids.push('up-f-nom');}
+  if(!telOk(UP.c.tel)){m.push(U.noTel);ids.push('up-f-tel');}
+  if(String(UP.c.wilaya||'').trim().length<2){m.push(U.noWilaya);ids.push('up-f-wilaya');}
+  if(String(UP.c.mail||'').trim()&&!mailOk(UP.c.mail)){m.push(U.badMail);ids.push('up-f-mail');}
+  var bySlot={};upSlots().forEach(function(sl){bySlot[sl.key]=sl;});
+  upReqGroups().forEach(function(g){if(!g.some(upHas)){pcs.push(g.map(function(k){return bySlot[k]?bySlot[k].label:k;}).join(' / '));g.forEach(function(k){ids.push('upslot-'+k);});}});
+  if(upNeedBconf()&&!UP.bconf){m.push(U.noBconf);ids.push('up-bconf');}
+  if(!UP.consent){m.push(U.noConsent);ids.push('up-consent');}
+  return {miss:m,pcs:pcs,ids:ids};
 }
 function upSend(){
   var U=ut();if(UP.busy)return;
-  var miss=upMissing();if(miss.length){upSetMsg(U.missingList(miss),true);return;}
+  var pr=upProblems();if(pr.miss.length||pr.pcs.length){upSetMsg([pr.pcs.length?U.missingPieces(pr.pcs):'',pr.miss.length?U.missingList(pr.miss):''].join(' ').trim(),true);markInvalid(pr.ids);return;}
   var tt=upTotal();if(tt.s>UP_MAX_TOTAL){upSetMsg(U.errBig,true);return;}
   var hp=document.getElementById('up-hp'),slots=upSlots(),payload={v:1,hp:hp?hp.value:'',secs:Math.round((Date.now()-UP.t0)/1000),profil:state.profil,lang:lang,
-    nom:String(UP.c.nom!=null?UP.c.nom:((FILL&&FILL.v&&FILL.v.nom)||'')).trim(),tel:String(UP.c.tel||'').trim(),mail:String(UP.c.mail||'').trim(),wilaya:String(UP.c.wilaya||'').trim(),consent:true,files:[],missing:[]};
+    nom:String(UP.c.nom!=null?UP.c.nom:((FILL&&FILL.v&&FILL.v.nom)||'')).trim(),tel:String(UP.c.tel||'').trim(),mail:String(UP.c.mail||'').trim(),wilaya:String(UP.c.wilaya||'').trim(),consent:true,bauto:!!upAuto(),bconf:!!UP.bconf,embedded:upAuto()?Object.keys(upAuto().cov||{}):[],files:[],missing:[]};
   var covered=FILL&&FILL.pdf&&FILL.pdf.extra>0&&upAuto();
   UP.busy=true;UP.pct=0;upSetMsg(U.sending,false);renderUploadBusy();
   var jobs=[];
@@ -1940,6 +1993,7 @@ function upSend(){
       if(r&&r.error==='busy'){fail(U.errBusy);return;}
       if(r&&(r.error==='size')){fail(U.errBig);return;}
       if(r&&(r.error==='type')){fail(U.errType);return;}
+      if(r&&(r.error==='missing')){fail(U.errMissing);return;}
       fail(r?U.errOther:U.errNet);
     };
     xhr.send(JSON.stringify(payload));
@@ -1954,10 +2008,12 @@ document.addEventListener('input',function(e){
   var n=e.target;if(!n||!n.getAttribute)return;
   var f=n.getAttribute('data-up-f');if(f){UP.c[f]=n.value;if(UP.err&&UP.msg)upSetMsg('',false);return;}
   if(n.id==='up-consent'){UP.consent=n.checked;if(UP.err&&UP.msg)upSetMsg('',false);}
+  if(n.id==='up-bconf'){UP.bconf=n.checked;if(UP.err&&UP.msg)upSetMsg('',false);}
 });
 document.addEventListener('change',function(e){
   var n=e.target;if(!n||!n.getAttribute)return;
   if(n.id==='up-consent'){UP.consent=n.checked;return;}
+  if(n.id==='up-bconf'){UP.bconf=n.checked;return;}
   var s=n.getAttribute('data-up-slot');if(!s)return;
   var U=ut(),files=Array.prototype.slice.call(n.files);n.value='';
   upSetMsg('',false);
@@ -1978,7 +2034,7 @@ document.addEventListener('click',function(e){
     function ok(){if(m)m.textContent=U.copied;}
     try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(r.textContent).then(ok,function(){});}}catch(err){}
     return;}
-  if(act==='again'){UP.done=null;UP.consent=false;UP.msg='';UP.t0=Date.now();renderUpload();}
+  if(act==='again'){UP.done=null;UP.consent=false;UP.bconf=false;UP.msg='';UP.t0=Date.now();renderUpload();}
 });
 
 /* Copie de l’adresse : presse-papiers si possible, sinon sélection du texte pour copier à la main. */
