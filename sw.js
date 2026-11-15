@@ -1,9 +1,10 @@
 /* Service worker – Prestations MGPTT. Page : réseau d'abord (contenu toujours à jour), cache en secours hors connexion. */
-const VERSION = '20261111051705';
+const VERSION = '20261115104500';
 const PREFIX = 'mgptt-prestations-';
 const CACHE = PREFIX + VERSION;
 const CORE = ['./', './index.html', './manifest.json', './icons/icon-192.png', './icons/icon-512.png',
-  './forms/Bulletin_adhesion_MGPTT_actif.pdf', './forms/Bulletin_adhesion_MGPTT_retraite.pdf'];
+  './forms/Bulletin_adhesion_MGPTT_actif.pdf', './forms/Bulletin_adhesion_MGPTT_retraite.pdf',
+  './forms/fond_actif.jpg', './forms/fond_retraite_1.jpg', './forms/fond_retraite_2.jpg'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)).then(() => self.skipWaiting()));
