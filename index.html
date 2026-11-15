@@ -1253,8 +1253,9 @@ function adhesionMailto(){
   return 'mailto:'+ADHESION_MAIL+'?subject='+encodeURIComponent(M.subject(profLabel(p)))+'&body='+encodeURIComponent(L.join('\r\n'));
 }
 function sendHtml(F){
+  if(UPLOAD_URL)return '';  /* le dépôt en ligne remplace l’envoi par e-mail ; ce bloc ne sert que de repli quand UPLOAD_URL est vide */
   var S=F.send,p=state.profil,s2=S.s2(profLabel(p));
-  return '<section class="send" aria-labelledby="send-title"><h3 id="send-title">'+esc(UPLOAD_URL?ut().titleAlt:S.title)+'</h3><p>'+esc(S.intro)+'</p>'
+  return '<section class="send" aria-labelledby="send-title"><h3 id="send-title">'+esc(S.title)+'</h3><p>'+esc(S.intro)+'</p>'
     +'<ol class="send-steps">'
     +'<li><b>'+esc(S.s1.h)+'</b><span>'+esc(S.s1.p)+'</span></li>'
     +'<li><b>'+esc(s2.h)+'</b><ul class="fpieces">'+(F.pieces[p]||[]).map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul></li>'
@@ -1699,9 +1700,9 @@ function showResult(){
   if(!R.url){R.url=URL.createObjectURL(R.blob);FILL.urls.push(R.url);}
   var mb=R.blob.size/1048576,size=mb>=1?mb.toFixed(1).replace('.',lang==='ar'?'٫':',')+' '+(lang==='ar'?'ميغابايت':'Mo'):Math.round(R.blob.size/1024)+' '+(lang==='ar'?'كيلوبايت':'Ko');
   var file=null;try{file=new File([R.blob],R.name,{type:'application/pdf'});}catch(err){}
-  var h='<div class="fill-res"><h4>'+esc(F.ready)+'</h4><p class="hint">'+esc(F.info(R.pages,size))+'</p>'+(R.blob.size>20971520?'<p class="form-msg err">'+esc(F.big)+'</p>':'')
+  var h='<div class="fill-res"><h4>'+esc(F.ready)+'</h4><p class="hint">'+esc(F.info(R.pages,size))+'</p>'+(R.blob.size>(UPLOAD_URL?10485760:20971520)?'<p class="form-msg err">'+esc(F.big)+'</p>':'')
     +'<p class="hint">'+esc(F.prev)+'</p><div class="prev">'+R.previews.map(function(u,i){return '<figure><a href="'+u+'" target="_blank" rel="noopener"><img alt="'+esc(F.pageN(i+1,R.pages))+'" src="'+u+'"></a><figcaption>'+esc(F.pageN(i+1,R.pages))+'</figcaption></figure>';}).join('')+'</div>'
-    +'<div class="send-actions">'+(file&&canShareFile(file)?'<button type="button" class="dl" id="fill-share"><span>'+esc(F.share)+'</span></button>':'')
+    +'<div class="send-actions">'+(!UPLOAD_URL&&file&&canShareFile(file)?'<button type="button" class="dl" id="fill-share"><span>'+esc(F.share)+'</span></button>':'')
     +'<a class="'+(file&&canShareFile(file)?'dl-alt':'dl')+'" id="fill-dl" href="'+R.url+'" download="'+esc(R.name)+'"><span>'+esc(F.download)+'</span></a></div>'
     +'<p class="note">'+esc(F.next)+'</p><p class="form-msg" id="fill-sharemsg" role="status" aria-live="polite"></p></div>';
   o.innerHTML=h;
@@ -1756,6 +1757,17 @@ document.addEventListener('keydown',function(e){
   if((e.key==='Enter'||e.key===' ')&&e.target&&e.target.getAttribute&&e.target.getAttribute('role')==='button'&&e.target.tagName==='LABEL'){e.preventDefault();e.target.click();}
 });
 
+/* Quand le dépôt en ligne est actif (UPLOAD_URL renseigné), l’envoi par e-mail n’est plus proposé : on adapte les textes qui y renvoyaient. */
+if(UPLOAD_URL){
+  T.fr.forms.intro='Choisissez votre situation, téléchargez le bulletin d’adhésion correspondant, imprimez-le puis remplissez-le (formulaire bilingue, français et arabe). Joignez-y les pièces indiquées. Vous pouvez ensuite l’envoyer en ligne depuis cet outil, après l’avoir scanné ou photographié (voir plus bas), ou le déposer dans un centre payeur. Pas d’imprimante ? Remplissez-le directement sur votre téléphone (voir plus bas).';
+  T.ar.forms.intro='اختر وضعيتك، ثم حمّل استمارة الانخراط الخاصة بها واطبعها واملأها (الاستمارة ثنائية اللغة: العربية والفرنسية)، وأرفقها بالوثائق المبيّنة. ويمكنك بعد ذلك إرسالها عبر الإنترنت من هذه الأداة بعد مسحها ضوئيًا أو تصويرها (انظر أسفله)، أو إيداعها لدى مركز الدفع. لا تملك طابعة؟ يمكنك ملؤها مباشرة على هاتفك (انظر أسفله).';
+  FILLT.fr.piecesHelp='Facultatif. Photographiez chaque pièce bien à plat et bien éclairée (ou choisissez une image de votre galerie) : elle sera ajoutée à la suite du bulletin, dans un seul fichier PDF. Une pièce déjà en PDF ? Ajoutez-la plutôt dans « Déposer mon dossier en ligne », plus bas.';
+  FILLT.ar.piecesHelp='اختياري. صوّر كل وثيقة وهي مسطّحة وجيدة الإضاءة (أو اختر صورة من معرض هاتفك): ستُضاف بعد الاستمارة في ملف PDF واحد. وثيقة موجودة أصلًا بصيغة PDF؟ أضفها بدلًا من ذلك في «إيداع ملفي عبر الإنترنت» أسفله.';
+  FILLT.fr.next='Étape suivante : descendez jusqu’à « Déposer mon dossier en ligne ». Ce PDF y est déjà prêt ; ajoutez vos autres pièces s’il y en a, puis envoyez.';
+  FILLT.ar.next='الخطوة التالية: انزل إلى «إيداع ملفي عبر الإنترنت». ملف PDF جاهز فيه أصلًا؛ أضف وثائقك الأخرى إن وُجدت ثم أرسل.';
+  FILLT.fr.big='Attention : le fichier dépasse 10 Mo et risque d’être refusé à l’envoi. Retirez des photos du bulletin et ajoutez-les plutôt dans « Déposer mon dossier en ligne ».';
+  FILLT.ar.big='تنبيه: حجم الملف يتجاوز 10 ميغابايت وقد يُرفض عند الإرسال. احذف بعض الصور من الاستمارة وأضفها بدلًا من ذلك في «إيداع ملفي عبر الإنترنت».';
+}
 /* ===== Dépôt du dossier en ligne : les fichiers partent vers le script de la MGPTT (UPLOAD_URL), qui les transmet à la boîte des adhésions =====
    Tant que UPLOAD_URL est vide, ce bloc n’apparaît pas et seul l’envoi par e-mail est proposé. */
 var UPT={
@@ -1773,10 +1785,10 @@ fr:{
   noBulletin:'le bulletin d’adhésion',noName:'votre nom',noTel:'votre numéro de téléphone',noConsent:'la case d’accord',
   notAdded:function(l){return 'Documents non ajoutés : '+l.join(', ')+'. Vous pourrez les envoyer plus tard.';},
   total:function(n,s){return n+(n>1?' fichiers':' fichier')+' · '+s;},
-  errType:'Format non accepté : seuls les PDF et les photos (JPEG, PNG) sont acceptés.',errPdf:'Ce PDF dépasse 8 Mo. Réduisez-le ou envoyez-le par e-mail.',
+  errType:'Format non accepté : seuls les PDF et les photos (JPEG, PNG) sont acceptés.',errPdf:'Ce PDF dépasse 8 Mo. Réduisez sa taille ou ajoutez plutôt des photos de vos pages.',
   errBig:'Les fichiers sont trop volumineux (15 Mo au total au maximum). Retirez-en ou utilisez des photos plus légères.',
-  errNet:'L’envoi n’a pas abouti. Vérifiez votre connexion puis réessayez, ou envoyez votre dossier par e-mail (voir plus bas).',
-  errBusy:'Le service est momentanément saturé. Réessayez plus tard ou envoyez votre dossier par e-mail (voir plus bas).',
+  errNet:'L’envoi n’a pas abouti. Vérifiez votre connexion puis réessayez.',
+  errBusy:'Le service est momentanément saturé. Réessayez plus tard.',
   errOther:'Le dossier n’a pas pu être enregistré. Vérifiez les informations et les fichiers, puis réessayez.',
   ok:'Votre dossier a bien été envoyé',ref:'Votre référence',copyRef:'Copier la référence',copied:'Référence copiée.',
   okText:'Un agent du service des adhésions va traiter votre dossier. Conservez cette référence si vous contactez la mutuelle.',
@@ -1797,10 +1809,10 @@ ar:{
   noBulletin:'استمارة الانخراط',noName:'الاسم',noTel:'رقم الهاتف',noConsent:'خانة الموافقة',
   notAdded:function(l){return 'وثائق لم تُضف: '+l.join('، ')+'. يمكنك إرسالها لاحقًا.';},
   total:function(n,s){return (n===1?'ملف واحد':(n===2?'ملفان':n+' ملفات'))+' · '+s;},
-  errType:'صيغة غير مقبولة: يُقبل فقط ملف PDF والصور (JPEG وPNG).',errPdf:'حجم ملف PDF هذا يتجاوز 8 ميغابايت. قلّص حجمه أو أرسله عبر البريد الإلكتروني.',
+  errType:'صيغة غير مقبولة: يُقبل فقط ملف PDF والصور (JPEG وPNG).',errPdf:'حجم ملف PDF هذا يتجاوز 8 ميغابايت. قلّص حجمه أو أضف بدلًا منه صورًا لصفحاتك.',
   errBig:'حجم الملفات كبير جدًا (15 ميغابايت في المجموع كحد أقصى). احذف بعضها أو استعمل صورًا أخفّ.',
-  errNet:'لم ينجح الإرسال. تحقق من الاتصال ثم أعد المحاولة، أو أرسل ملفك عبر البريد الإلكتروني (انظر أسفله).',
-  errBusy:'الخدمة مشغولة حاليًا. أعد المحاولة لاحقًا أو أرسل ملفك عبر البريد الإلكتروني (انظر أسفله).',
+  errNet:'لم ينجح الإرسال. تحقق من الاتصال ثم أعد المحاولة.',
+  errBusy:'الخدمة مشغولة حاليًا. أعد المحاولة لاحقًا.',
   errOther:'تعذّر تسجيل الملف. تحقق من المعلومات والملفات ثم أعد المحاولة.',
   ok:'تم إرسال ملفك بنجاح',ref:'مرجعك',copyRef:'نسخ المرجع',copied:'تم نسخ المرجع.',
   okText:'سيتولى عون من مصلحة الانخراطات معالجة ملفك. احتفظ بهذا المرجع إذا اتصلت بالتعاضدية.',
@@ -1863,7 +1875,7 @@ function renderUpload(){
     +'<p class="hint">'+esc(U.privacy)+'</p>'
     +'<input type="text" class="hp" id="up-hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">'
     +'<div id="up-msgwrap">'+upMsgHtml()+'</div>'
-    +'<progress id="up-prog" max="100" value="'+UP.pct+'"'+(UP.busy?'':' hidden')+'></progress>'
+    +'<progress id="up-prog" max="100"'+(UP.busy?'':' hidden')+'></progress>'
     +'<div class="fl-act"><button type="button" class="dl" id="up-go"'+(UP.busy?' disabled':'')+'><span>'+esc(UP.busy?U.sending:U.send)+'</span></button></div></fieldset></section>';
   host.innerHTML=h;
 }
@@ -1918,7 +1930,8 @@ function upSend(){
     xhr.open('POST',UPLOAD_URL,true);
     xhr.setRequestHeader('Content-Type','text/plain;charset=utf-8');
     xhr.timeout=240000;
-    xhr.upload.onprogress=function(e){if(e.lengthComputable){UP.pct=Math.round(e.loaded/e.total*100);var p=document.getElementById('up-prog');if(p)p.value=UP.pct;}};
+    /* IMPORTANT : ne pas ajouter d’écouteur sur xhr.upload (onprogress, etc.). Cela force le navigateur à envoyer une requête préliminaire (OPTIONS, « preflight »)
+       que Google Apps Script refuse : l’envoi échouerait alors avec une erreur CORS. La barre d’envoi reste donc indéterminée. */
     function fail(m){UP.busy=false;upSetMsg(m,true);renderUploadBusy();}
     xhr.onerror=xhr.ontimeout=function(){fail(U.errNet);};
     xhr.onload=function(){
@@ -1935,7 +1948,7 @@ function upSend(){
 function renderUploadBusy(){
   var b=document.getElementById('up-go'),p=document.getElementById('up-prog'),U=ut();
   if(b){b.disabled=UP.busy;b.querySelector('span').textContent=UP.busy?U.sending:U.send;}
-  if(p){p.hidden=!UP.busy;p.value=UP.pct;}
+  if(p){p.hidden=!UP.busy;}
 }
 document.addEventListener('input',function(e){
   var n=e.target;if(!n||!n.getAttribute)return;
