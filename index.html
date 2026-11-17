@@ -706,12 +706,12 @@ AR['chimio']={name:'مساعدة مالية استثنائية للعلاج ال
 ITEMS.forEach(function(it){it.ar=AR[it.id]||null;});
 
 
-/* ===== Centres payeurs : adresses du poster « Le guide du mutualiste » ; numéros fixes du poster (14/10/2026) ; mobiles transmis par la MGPTT (WhatsApp, 13/10/2026). Béchar : aucun numéro reçu ; Ouargla : pas d’adresse reçue. Constantine : fixe 039 63 54 65 indiqué par la Sous-Direction le 15/10/2026. ===== */
+/* ===== Centres payeurs : adresses du poster « Le guide du mutualiste » ; numéros fixes du poster (14/10/2026) ; mobiles transmis par la MGPTT (WhatsApp, 13/10/2026). Béchar : adresse du centre Algérie Télécom et mobile de la cheffe de centre transmis le 16/11/2026 ; Tébessa : pas de fixe, mobile transmis le 16/11/2026 (remplace le précédent) ; Ouargla : pas d’adresse reçue. Constantine : fixe 039 63 54 65 indiqué par la Sous-Direction le 15/10/2026. ===== */
 var CENTRES=[
   {id:'ain-defla',fr:'Aïn Defla',ar:'عين الدفلى',c:[{fr:'Les Belles Sources, Miliana',ar:'الينابيع الجميلة، مليانة'}],fixe:'027 54 61 88',mob:'0655 58 23 45'},
   {id:'alger',fr:'Alger',ar:'الجزائر العاصمة',c:[{fr:'27, boulevard Zighoud Youcef',ar:'27 شارع زيغود يوسف'}],fixe:'023 49 87 99',mob:'0655 58 23 32'},
   {id:'annaba',fr:'Annaba',ar:'عنابة',c:[{fr:'Menadia 01, bloc 10, Avant-Port',ar:'مناديا 01، عمارة 10، الميناء'}],fixe:'038 57 07 03',mob:'0655 58 23 34'},
-  {id:'bechar',fr:'Béchar',ar:'بشار',c:[{fr:'Cité Latelis, Béchar El Djadid',ar:'حي لا سيليس، بشار الجديد'}]},
+  {id:'bechar',fr:'Béchar',ar:'بشار',c:[{fr:'Centre de production et de maintenance d’Algérie Télécom, Pont Ba Zayed, route nationale n° 06, Aïssat Idir',ar:'مركز الإنتاج والصيانة اتصالات الجزائر، جسر با زايد، الطريق الوطني رقم 06، عيسات إيدير'}],mob:'0660 60 49 83'},
   {id:'blida',fr:'Blida',ar:'البليدة',c:[{fr:'Rue des Frères Azzouz, Bab Esabt',ar:'شارع الإخوة عزوز، باب السبت'}],fixe:'025 21 39 49',mob:'0655 58 23 60'},
   {id:'chlef',fr:'Chlef',ar:'الشلف',c:[{fr:'Complexe des PTT, centre-ville',ar:'مركب البريد والمواصلات'}],fixe:'027 77 39 04',mob:'0655 58 23 47'},
   {id:'constantine',fr:'Constantine',ar:'قسنطينة',c:[{fr:'Kaddour Boumedous, Ciloc',ar:'قدور بومدوس، السيلوك'}],fixe:'039 63 54 65'},
@@ -721,7 +721,7 @@ var CENTRES=[
   {id:'oum-el-bouaghi',fr:'Oum El Bouaghi',ar:'أم البواقي',c:[{fr:'Complexe des PTT, centre-ville',ar:'مركب البريد والمواصلات، وسط المدينة'}],fixe:'032 54 34 78',mob:'0655 58 23 07'},
   {id:'setif',fr:'Sétif',ar:'سطيف',c:[{fr:'Complexe des PTT, rue de l’ALN, centre-ville',ar:'مركب البريد والمواصلات، وسط المدينة'}],fixe:'036 82 76 91',mob:'0655 58 23 39'},
   {id:'sidi-bel-abbes',fr:'Sidi Bel Abbès',ar:'سيدي بلعباس',c:[{fr:'Cité 1500 logements Sorecor',ar:'حي 1500 مسكن، صوريكور'}],fixe:'048 76 78 03',mob:'0655 58 23 27'},
-  {id:'tebessa',fr:'Tébessa',ar:'تبسة',c:[{fr:'Cité Thevest',ar:'حي تيفست'}],fixe:'037 56 26 93',mob:'0655 58 23 36'},
+  {id:'tebessa',fr:'Tébessa',ar:'تبسة',c:[{fr:'Cité Thevest',ar:'حي تيفست'}],mob:'0661 80 66 65'},
   {id:'tizi-ouzou',fr:'Tizi Ouzou',ar:'تيزي وزو',c:[{fr:'Recette principale, centre-ville',ar:'القباضة الرئيسية، وسط المدينة'}],fixe:'026 47 22 86',mob:'0655 58 23 40'},
   {id:'khenchela',fr:'Khenchela',ar:'خنشلة',c:[{fr:'Cité 710 logements, n° 307, BT 11',ar:'حي 710 مسكن، رقم 307، عمارة 11'}],fixe:'032 72 57 22',mob:'0663 00 24 37'},
   {id:'ouargla',fr:'Ouargla',ar:'ورقلة',c:[{none:true}],mob:'0671 33 61 69'},
